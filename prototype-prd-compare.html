@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型 · PRD 对照</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0f1419; color: #e2e8f0; overflow: hidden; }
+
+    .shell {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      --left-pct: 32%;
+      --proto-design-w: 1440;
+      --proto-design-h: 900;
+    }
+
+    .toolbar {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      padding: 8px 14px;
+      background: #151d28;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-size: 12.5px;
+    }
+    .toolbar-title { font-weight: 600; color: #94a3b8; margin-right: 4px; }
+    .tb-group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .tb-label { color: #64748b; font-size: 11px; margin-left: 4px; }
+    .tb-btn {
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: #cbd5e1;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background .12s, border-color .12s;
+    }
+    .tb-btn:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .tb-btn[aria-pressed="true"] {
+      background: rgba(56, 189, 248, .15);
+      border-color: rgba(56, 189, 248, .45);
+      color: #7dd3fc;
+    }
+    .tb-btn.mode-prd[aria-pressed="true"] {
+      background: rgba(251, 191, 36, .12);
+      border-color: rgba(251, 191, 36, .45);
+      color: #fcd34d;
+    }
+    .tb-btn.tb-ratio[aria-pressed="true"] {
+      background: rgba(148, 163, 184, .12);
+      border-color: rgba(148, 163, 184, .35);
+      color: #e2e8f0;
+    }
+    .toolbar-hint { margin-left: auto; font-size: 11px; color: #64748b; }
+
+    .panes {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      position: relative;
+    }
+
+    .pane {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: #111820;
+    }
+
+    .pane--proto {
+      flex: 0 0 var(--left-pct);
+      min-width: 0;
+    }
+
+    .resize-handle {
+      flex: 0 0 6px;
+      cursor: col-resize;
+      background: rgba(255,255,255,.06);
+      position: relative;
+      z-index: 5;
+      transition: background .12s;
+    }
+    .resize-handle:hover, .resize-handle.is-dragging { background: rgba(56, 189, 248, .35); }
+    .resize-handle::after {
+      content: '';
+      position: absolute;
+      left: -4px; right: -4px; top: 0; bottom: 0;
+    }
+
+    .pane--prd {
+      flex: 1 1 auto;
+      min-width: 0;
+      position: relative;
+    }
+
+    .shell.mode-proto .pane--prd,
+    .shell.mode-proto .resize-handle { display: none; }
+    .shell.mode-proto .pane--proto { flex: 1 1 100%; }
+
+    .shell.mode-prd .pane--proto,
+    .shell.mode-prd .resize-handle { display: none; }
+    .shell.mode-prd .pane--prd { flex: 1 1 100%; }
+
+    .shell:not(.mode-split) .resize-handle { display: none; }
+
+    /* 左侧原型：按设计宽度缩放，窄栏内整体缩小，右侧 PRD 为主阅读区 */
+    .proto-viewport {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      overflow: auto;
+      background: #0d1117;
+    }
+    .proto-scale-clip {
+      width: 100%;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .proto-scaler {
+      transform-origin: top left;
+      width: calc(var(--proto-design-w) * 1px);
+      height: calc(var(--proto-design-h) * 1px);
+    }
+    .proto-scaler iframe {
+      display: block;
+      width: calc(var(--proto-design-w) * 1px);
+      height: calc(var(--proto-design-h) * 1px);
+      border: 0;
+      background: #fff;
+    }
+
+    .pane-frame-wrap {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pane-frame-wrap > iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .toc-btn {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 20;
+      padding: 8px 16px;
+      border: 1px solid rgba(251, 191, 36, .45);
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(30, 41, 59, .95) 0%, rgba(15, 23, 42, .98) 100%);
+      color: #fbbf24;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
+      transition: transform .12s, border-color .12s, background .12s;
+    }
+    .toc-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(251, 191, 36, .75);
+      background: linear-gradient(180deg, rgba(51, 65, 85, .98) 0%, rgba(30, 41, 59, .98) 100%);
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .2s, visibility .2s;
+    }
+    .drawer-backdrop.is-open { opacity: 1; visibility: visible; }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(380px, 92vw);
+      max-width: 100%;
+      height: 100%;
+      background: #1a2332;
+      border-left: 1px solid rgba(255,255,255,.1);
+      z-index: 101;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -8px 0 32px rgba(0,0,0,.4);
+      transform: translateX(100%);
+      transition: transform .22s ease;
+    }
+    .drawer-backdrop.is-open + .drawer,
+    .drawer.is-open { transform: translateX(0); }
+
+    .drawer-hd {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+      font-size: 15px;
+      color: #fbbf24;
+    }
+    .drawer-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(255,255,255,.06);
+      color: #94a3b8;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .drawer-close:hover { background: rgba(255,255,255,.1); color: #e2e8f0; }
+
+    .drawer-sub {
+      padding: 0 16px 10px;
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px 24px;
+    }
+    .drawer-body::-webkit-scrollbar { width: 6px; }
+    .drawer-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 3px; }
+
+    .toc-item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 8px 10px;
+      margin: 2px 0;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.45;
+      cursor: pointer;
+      transition: background .1s;
+    }
+    .toc-item:hover { background: rgba(255,255,255,.06); color: #fff; }
+    .toc-item.l1 { font-weight: 600; color: #e2e8f0; padding-left: 8px; }
+    .toc-item.l2 { padding-left: 16px; font-size: 12.5px; }
+    .toc-item.l3 { padding-left: 26px; font-size: 12.5px; color: #94a3b8; }
+    .toc-item.l4 { padding-left: 36px; font-size: 12px; color: #7c8faa; }
+
+    .toc-divider {
+      height: 1px;
+      background: rgba(255,255,255,.08);
+      margin: 10px 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell mode-split" id="shell">
+    <div class="toolbar">
+      <span class="toolbar-title">原型 / PRD 对照</span>
+      <div class="tb-group">
+        <button type="button" class="tb-btn tb-split" id="modeSplit" aria-pressed="true">分屏</button>
+        <button type="button" class="tb-btn" id="modeProto" aria-pressed="false">仅原型</button>
+        <button type="button" class="tb-btn mode-prd" id="modePrd" aria-pressed="false">仅 PRD</button>
+      </div>
+      <span class="tb-label">比例</span>
+      <div class="tb-group" id="ratioGroup" role="group" aria-label="分屏比例（左原型 : 右PRD）">
+        <button type="button" class="tb-btn tb-ratio" data-pct="28" title="左 28% · 右 72%">28:72</button>
+        <button type="button" class="tb-btn tb-ratio" data-pct="35" title="左 35% · 右 65%">35:65</button>
+        <button type="button" class="tb-btn tb-ratio" data-pct="40" title="左 40% · 右 60%">40:60</button>
+        <button type="button" class="tb-btn tb-ratio" data-pct="50" title="左 50% · 右 50%">50:50</button>
+        <button type="button" class="tb-btn tb-ratio" data-pct="60" title="左 60% · 右 40%">60:40</button>
+        <button type="button" class="tb-btn tb-ratio" data-pct="70" title="左 70% · 右 30%">70:30</button>
+      </div>
+      <span class="toolbar-hint" id="splitHint">拖拽分隔条微调 · 目录在右下角「目录」维护（PRD 内嵌侧栏已隐藏）</span>
+    </div>
+
+    <div class="panes" id="panes">
+      <section class="pane pane--proto" aria-label="原型">
+        <div class="proto-viewport" id="protoViewport">
+          <div class="proto-scale-clip" id="protoScaleClip">
+            <div class="proto-scaler" id="protoScaler">
+              <iframe id="protoFrame" title="原型" src="admin-ops-v1.html"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="resize-handle" id="resizeHandle" role="separator" aria-orientation="vertical" aria-label="拖拽调整左右宽度"></div>
+      <section class="pane pane--prd" aria-label="PRD 文档">
+        <div class="pane-frame-wrap">
+          <iframe id="prdFrame" title="PRD 文档" src="prd-clive-teaching-admin.html"></iframe>
+          <button type="button" class="toc-btn" id="tocBtn" title="打开文档目录">目录</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawerTitle">
+    <div class="drawer-hd">
+      <span id="drawerTitle">PRD 目录</span>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="关闭">×</button>
+    </div>
+    <p class="drawer-sub">点击下方条目定位到 PRD 对应章节。<code style="color:#94a3b8">PRD_TOC</code> 与 <strong>prd-clive-teaching-admin.html</strong> 侧栏 <code style="color:#94a3b8">#nav</code> 中 <code style="color:#94a3b8">href</code> 保持一致；更新 PRD 目录时请两边同步。</p>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <script>
+(function () {
+  var shell = document.getElementById('shell');
+  var panes = document.getElementById('panes');
+  var resizeHandle = document.getElementById('resizeHandle');
+  var prdFrame = document.getElementById('prdFrame');
+  var protoViewport = document.getElementById('protoViewport');
+  var protoScaler = document.getElementById('protoScaler');
+  var protoScaleClip = document.getElementById('protoScaleClip');
+
+  var modeSplit = document.getElementById('modeSplit');
+  var modeProto = document.getElementById('modeProto');
+  var modePrd = document.getElementById('modePrd');
+  var ratioGroup = document.getElementById('ratioGroup');
+  var ratioBtns = ratioGroup.querySelectorAll('.tb-ratio');
+
+  var drawer = document.getElementById('drawer');
+  var drawerBackdrop = document.getElementById('drawerBackdrop');
+  var drawerBody = document.getElementById('drawerBody');
+  var drawerClose = document.getElementById('drawerClose');
+  var tocBtn = document.getElementById('tocBtn');
+  var splitHint = document.getElementById('splitHint');
+
+  var LS_PCT = 'compareSplitPct';
+  var LS_MODE = 'compareMode';
+
+  var DESIGN_W = 1440;
+  var DESIGN_H = 900;
+
+  /* ═══════════════════════════════════════════════════════════
+     可编辑：PRD 目录 — 须与 prd-clive-teaching-admin.html 侧栏 #nav 同步
+     类型：{ level: 1-4, text: '显示文案', hash: '#id' } 或 { divider: true }
+     ═══════════════════════════════════════════════════════════ */
+  var PRD_TOC = [
+    { level: 1, text: '1. 项目概述', hash: '#ch1' },
+    { level: 2, text: '1.1 产品背景', hash: '#s1-1' },
+    { level: 2, text: '1.2 阶段目标与核心指标', hash: '#s1-2' },
+    { level: 2, text: '1.3 目标用户与服务范围', hash: '#s1-3' },
+    { divider: true },
+    { level: 1, text: '2. 产品架构', hash: '#ch2' },
+    { level: 2, text: '2.1 产品矩阵', hash: '#s2-1' },
+    { level: 2, text: '2.2 业务领域设计（ER图）', hash: '#s2-2' },
+    { level: 2, text: '2.3 账户体系设计', hash: '#s2-3' },
+    { level: 2, text: '2.4 直播三方依赖', hash: '#s2-4' },
+    { level: 2, text: '2.5 项目未来发展', hash: '#s2-5' },
+    { divider: true },
+    { level: 1, text: '3. 需求列表', hash: '#ch3' },
+    { level: 2, text: 'A1 后台登录', hash: '#A1' },
+    { level: 3, text: 'A1-1 内部用户登录', hash: '#A1-1' },
+    { level: 2, text: 'A2 权限管理', hash: '#A2' },
+    { level: 3, text: 'A2-1 内部用户管理', hash: '#A2-1' },
+    { level: 3, text: 'A2-2 角色权限管理', hash: '#A2-2' },
+    { level: 2, text: 'A3 基础码表', hash: '#A3' },
+    { level: 3, text: 'A3-1 国家管理', hash: '#A3-1' },
+    { level: 3, text: 'A3-2 学科管理', hash: '#A3-2' },
+    { level: 3, text: 'A3-3 年级管理', hash: '#A3-3' },
+    { level: 2, text: 'A4 学校管理', hash: '#A4' },
+    { level: 3, text: 'A4-1 新建学校', hash: '#A4-1' },
+    { level: 3, text: 'A4-2 编辑学校', hash: '#A4-2' },
+    { level: 3, text: 'A4-3 学校列表', hash: '#A4-3' },
+    { level: 2, text: 'A5 班级管理', hash: '#A5' },
+    { level: 3, text: 'A5-1 进入班级管理', hash: '#A5-1' },
+    { level: 3, text: 'A5-2 新增班级', hash: '#A5-2' },
+    { level: 3, text: 'A5-3 编辑班级', hash: '#A5-3' },
+    { level: 3, text: 'A5-4 班级列表', hash: '#A5-4' },
+    { level: 3, text: 'A5-5 设置带班老师', hash: '#A5-5' },
+    { level: 2, text: 'A6 学生管理', hash: '#A6' },
+    { level: 3, text: 'A6-1 新增学生', hash: '#A6-1' },
+    { level: 3, text: 'A6-2 编辑学生', hash: '#A6-2' },
+    { level: 3, text: 'A6-3 重置初始密码', hash: '#A6-3' },
+    { level: 3, text: 'A6-4 学生列表', hash: '#A6-4' },
+    { level: 2, text: 'A7 老师管理', hash: '#A7' },
+    { level: 3, text: 'A7-1 新增老师', hash: '#A7-1' },
+    { level: 3, text: 'A7-2 编辑老师', hash: '#A7-2' },
+    { level: 3, text: 'A7-3 老师列表', hash: '#A7-3' },
+    { level: 2, text: 'A8 直播管理', hash: '#A8' },
+    { level: 3, text: 'A8-1 直播列表', hash: '#A8-1' },
+    { level: 4, text: 'A8-1-1 创建直播间', hash: '#A8-1-1' },
+    { level: 4, text: 'A8-1-2 编辑直播间', hash: '#A8-1-2' },
+    { level: 4, text: 'A8-1-3 直播间列表', hash: '#A8-1-3' },
+    { level: 3, text: 'A8-2 录播列表', hash: '#A8-2' },
+    { level: 4, text: 'A8-2-1 上传录播', hash: '#A8-2-1' },
+    { level: 4, text: 'A8-2-2 修改录播名称', hash: '#A8-2-2' },
+    { level: 4, text: 'A8-2-3 删除录播', hash: '#A8-2-3' },
+    { level: 4, text: 'A8-2-4 录播列表', hash: '#A8-2-4' },
+    { level: 2, text: 'A9 课程类型管理', hash: '#A9' },
+    { level: 3, text: 'A9-1 新增课程类型', hash: '#A9-1' },
+    { level: 3, text: 'A9-2 编辑课程类型', hash: '#A9-2' },
+    { level: 3, text: 'A9-3 课程类型列表', hash: '#A9-3' },
+    { level: 2, text: 'A10 课程管理', hash: '#A10' },
+    { level: 3, text: 'A10-1 新建课程流程', hash: '#A10-1' },
+    { level: 3, text: 'A10-2 基础信息设置', hash: '#A10-2' },
+    { level: 3, text: 'A10-3 课程介绍设置', hash: '#A10-3' },
+    { level: 3, text: 'A10-4 课程课时管理', hash: '#A10-4' },
+    { level: 4, text: 'A10-4-1 新增课时', hash: '#A10-4-1' },
+    { level: 4, text: 'A10-4-2 编辑课时', hash: '#A10-4-2' },
+    { level: 4, text: 'A10-4-3 上传课件', hash: '#A10-4-3' },
+    { level: 4, text: 'A10-4-4 上/下架课时', hash: '#A10-4-4' },
+    { level: 4, text: 'A10-4-5 课时列表', hash: '#A10-4-5' },
+    { level: 3, text: 'A10-5 课程资源管理', hash: '#A10-5' },
+    { level: 4, text: 'A10-5-1 课时同步资源', hash: '#A10-5-1' },
+    { level: 4, text: 'A10-5-2 课外资源', hash: '#A10-5-2' },
+    { level: 3, text: 'A10-6 保存课程', hash: '#A10-6' },
+    { level: 3, text: 'A10-7 发布课程', hash: '#A10-7' },
+    { level: 3, text: 'A10-8 课程列表', hash: '#A10-8' },
+    { level: 3, text: 'A10-9 查看课表', hash: '#A10-9' },
+    { level: 3, text: 'A10-10 编辑课程', hash: '#A10-10' },
+    { level: 3, text: 'A10-11 课时管理', hash: '#A10-11' },
+    { level: 3, text: 'A10-12 下架课程', hash: '#A10-12' },
+    { level: 3, text: 'A10-13 调整发布范围', hash: '#A10-13' },
+    { level: 2, text: 'A11 工作台', hash: '#A11' },
+    { level: 3, text: 'A11-1 上课工作台', hash: '#A11-1' }
+  ];
+
+  function injectPrdEmbedStyles() {
+    try {
+      var doc = prdFrame.contentDocument || prdFrame.contentWindow.document;
+      if (!doc || !doc.head) return;
+      if (doc.getElementById('compare-embed-prd')) return;
+      var s = doc.createElement('style');
+      s.id = 'compare-embed-prd';
+      s.textContent =
+        '.sidebar{display:none!important}' +
+        '.layout{padding-left:0!important}' +
+        '.layout .content{flex:1 1 100%!important;max-width:none!important}' +
+        '.content-inner{max-width:none!important}';
+      doc.head.appendChild(s);
+    } catch (e) {}
+  }
+
+  function setMode(mode) {
+    shell.classList.remove('mode-split', 'mode-proto', 'mode-prd');
+    shell.classList.add('mode-' + mode);
+    modeSplit.setAttribute('aria-pressed', mode === 'split' ? 'true' : 'false');
+    modeProto.setAttribute('aria-pressed', mode === 'proto' ? 'true' : 'false');
+    modePrd.setAttribute('aria-pressed', mode === 'prd' ? 'true' : 'false');
+    splitHint.style.display = mode === 'split' ? '' : 'none';
+    ratioGroup.style.display = mode === 'split' ? '' : 'none';
+    try { localStorage.setItem(LS_MODE, mode); } catch (e) {}
+    requestAnimationFrame(function () { updateProtoScale(); });
+  }
+
+  function applySplitPct(pct, fromPreset) {
+    pct = Math.max(16, Math.min(84, pct));
+    shell.style.setProperty('--left-pct', pct + '%');
+    try { localStorage.setItem(LS_PCT, String(pct)); } catch (e) {}
+    if (fromPreset) {
+      ratioBtns.forEach(function (b) {
+        var p = parseFloat(b.getAttribute('data-pct'), 10);
+        b.setAttribute('aria-pressed', Math.abs(p - pct) < 1.5 ? 'true' : 'false');
+      });
+    }
+  }
+
+  function syncRatioHighlight() {
+    var pct = parseFloat(getComputedStyle(shell).getPropertyValue('--left-pct')) || 32;
+    var match = false;
+    ratioBtns.forEach(function (b) {
+      var p = parseFloat(b.getAttribute('data-pct'), 10);
+      var on = Math.abs(p - pct) < 1.5;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (on) match = true;
+    });
+    if (!match) {
+      ratioBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    }
+  }
+
+  function clampPctFromPointer(clientX) {
+    var rect = panes.getBoundingClientRect();
+    var w = rect.width;
+    if (w <= 0) return 32;
+    var minLeftPx = 200;
+    var minRightPx = 260;
+    var minPct = (minLeftPx / w) * 100;
+    var maxPct = ((w - minRightPx) / w) * 100;
+    var raw = ((clientX - rect.left) / w) * 100;
+    return Math.max(minPct, Math.min(maxPct, raw));
+  }
+
+  function updateProtoScale() {
+    if (!protoViewport || !protoScaler || !protoScaleClip) return;
+    if (shell.classList.contains('mode-prd')) return;
+    var cw = protoViewport.clientWidth;
+    if (cw <= 0) return;
+    var scale = cw / DESIGN_W;
+    scale = Math.max(0.28, Math.min(scale, 1.2));
+    protoScaler.style.transform = 'scale(' + scale + ')';
+    protoScaleClip.style.height = (DESIGN_H * scale) + 'px';
+    protoScaleClip.style.width = '100%';
+  }
+
+  var ro;
+  if (typeof ResizeObserver !== 'undefined') {
+    ro = new ResizeObserver(function () { updateProtoScale(); });
+    ro.observe(protoViewport);
+  } else {
+    window.addEventListener('resize', updateProtoScale);
+  }
+
+  var dragging = false;
+  resizeHandle.addEventListener('mousedown', function (e) {
+    if (shell.classList.contains('mode-split') === false) return;
+    e.preventDefault();
+    dragging = true;
+    resizeHandle.classList.add('is-dragging');
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    applySplitPct(clampPctFromPointer(e.clientX), false);
+    syncRatioHighlight();
+  });
+
+  document.addEventListener('mouseup', function () {
+    if (!dragging) return;
+    dragging = false;
+    resizeHandle.classList.remove('is-dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  });
+
+  modeSplit.addEventListener('click', function () { setMode('split'); });
+  modeProto.addEventListener('click', function () { setMode('proto'); });
+  modePrd.addEventListener('click', function () { setMode('prd'); });
+
+  ratioBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (shell.classList.contains('mode-split') === false) setMode('split');
+      var p = parseFloat(btn.getAttribute('data-pct'), 10);
+      applySplitPct(p, true);
+      requestAnimationFrame(function () { updateProtoScale(); });
+    });
+  });
+
+  prdFrame.addEventListener('load', function () {
+    injectPrdEmbedStyles();
+  });
+
+  function buildDrawer() {
+    drawerBody.innerHTML = '';
+    PRD_TOC.forEach(function (row) {
+      if (row.divider) {
+        var d = document.createElement('div');
+        d.className = 'toc-divider';
+        drawerBody.appendChild(d);
+        return;
+      }
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'toc-item l' + row.level;
+      btn.textContent = row.text;
+      btn.addEventListener('click', function () {
+        navigatePrd(row.hash);
+        closeDrawer();
+      });
+      drawerBody.appendChild(btn);
+    });
+  }
+
+  function navigatePrd(hash) {
+    try {
+      var win = prdFrame.contentWindow;
+      var doc = prdFrame.contentDocument || win.document;
+      var id = hash.replace(/^#/, '');
+      win.location.hash = hash;
+      var el = doc.getElementById(id);
+      if (!el) return;
+      var content = doc.querySelector('.content');
+      if (content) {
+        var top = el.getBoundingClientRect().top - content.getBoundingClientRect().top + content.scrollTop;
+        content.scrollTo({ top: Math.max(0, top - 20), behavior: 'smooth' });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } catch (err) {
+      try {
+        prdFrame.contentWindow.location.hash = hash;
+      } catch (e2) {}
+    }
+  }
+
+  function openDrawer() {
+    drawerBackdrop.classList.add('is-open');
+    drawer.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    drawerBackdrop.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeDrawer() {
+    drawerBackdrop.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    drawerBackdrop.setAttribute('aria-hidden', 'true');
+  }
+
+  tocBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    openDrawer();
+  });
+  drawerClose.addEventListener('click', closeDrawer);
+  drawerBackdrop.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+
+  (function init() {
+    try {
+      var savedPct = localStorage.getItem(LS_PCT);
+      if (savedPct) applySplitPct(parseFloat(savedPct, 10), true);
+      else applySplitPct(32, true);
+    } catch (e) {
+      applySplitPct(32, true);
+    }
+    try {
+      var savedMode = localStorage.getItem(LS_MODE);
+      if (savedMode === 'proto' || savedMode === 'prd' || savedMode === 'split') {
+        setMode(savedMode);
+      }
+    } catch (e) {}
+    buildDrawer();
+    injectPrdEmbedStyles();
+    syncRatioHighlight();
+    updateProtoScale();
+  })();
+})();
+  </script>
+</body>
+</html>
