@@ -1,9 +1,712 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>george</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>George Group 冷钱包首页</title>
+  <style>
+    :root {
+      --ink: #15171a;
+      --muted: #5d6470;
+      --line: #d9dee5;
+      --paper: #f7f5ef;
+      --panel: #ffffff;
+      --steel: #2c3742;
+      --green: #176b57;
+      --gold: #b78a42;
+      --red: #a3493a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 72px);
+      background: rgba(247, 245, 239, 0.92);
+      border-bottom: 1px solid rgba(21, 23, 26, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--ink);
+      display: grid;
+      place-items: center;
+      background: var(--panel);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav a:last-child {
+      color: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 10px 16px;
+      background: var(--panel);
+    }
+
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+      gap: 54px;
+      align-items: center;
+      padding: 54px clamp(20px, 5vw, 72px) 42px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      border: 1px solid rgba(21, 23, 26, 0.18);
+      color: var(--green);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(44px, 6.5vw, 86px);
+      line-height: 0.98;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.75;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border: 1px solid var(--ink);
+      font-weight: 700;
+      font-size: 15px;
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 44px;
+      max-width: 720px;
+    }
+
+    .proof-item {
+      border-left: 2px solid var(--gold);
+      padding: 4px 0 4px 14px;
+    }
+
+    .proof-item strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .proof-item span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .vault-stage {
+      position: relative;
+      min-height: 560px;
+      background: #e8e5dc;
+      overflow: hidden;
+      border: 1px solid rgba(21, 23, 26, 0.18);
+    }
+
+    .vault-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.72), transparent 48%),
+        radial-gradient(circle at 72% 28%, rgba(183, 138, 66, 0.35), transparent 30%),
+        linear-gradient(160deg, rgba(23, 107, 87, 0.18), transparent 44%);
+    }
+
+    .device {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(72%, 430px);
+      aspect-ratio: 0.72;
+      transform: translate(-50%, -50%) rotate(-5deg);
+      background: linear-gradient(145deg, #242a31, #111417);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 28px 70px rgba(21, 23, 26, 0.28);
+      padding: 28px;
+      color: white;
+    }
+
+    .device-screen {
+      height: 64%;
+      background: #eef3ec;
+      color: var(--ink);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .screen-label {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .screen-value {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 760;
+      line-height: 1;
+    }
+
+    .screen-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(21, 23, 26, 0.12);
+      padding-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .device-base {
+      display: grid;
+      grid-template-columns: 1fr 54px;
+      gap: 16px;
+      align-items: end;
+      margin-top: 26px;
+    }
+
+    .secure-line {
+      height: 8px;
+      background: linear-gradient(90deg, var(--gold), var(--green), #bcc5ca);
+    }
+
+    .confirm {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    .floating-note {
+      position: absolute;
+      right: 26px;
+      bottom: 28px;
+      max-width: 250px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(21, 23, 26, 0.14);
+      padding: 16px;
+      color: var(--steel);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .section {
+      padding: 72px clamp(20px, 5vw, 72px);
+      border-top: 1px solid rgba(21, 23, 26, 0.09);
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 640px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      max-width: 430px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 22px;
+      min-height: 230px;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(21, 23, 26, 0.18);
+      color: var(--green);
+      font-weight: 800;
+      margin-bottom: 26px;
+    }
+
+    .feature h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .journey {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .concierge {
+      background: var(--steel);
+      color: white;
+      padding: 30px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .concierge p {
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 20px;
+    }
+
+    .step-num {
+      height: 44px;
+      border: 1px solid var(--gold);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .risk-band {
+      background: #202327;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .risk-band p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    .audit-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .audit-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 14px 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .audit-item strong {
+      color: white;
+    }
+
+    .footer-cta {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+      background: var(--panel);
+    }
+
+    .footer-cta p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 17px;
+      max-width: 680px;
+    }
+
+    .contact-box {
+      border: 1px solid var(--line);
+      padding: 24px;
+      background: #fbfaf7;
+    }
+
+    .field {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .field strong {
+      color: var(--ink);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .journey,
+      .risk-band,
+      .footer-cta {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-title {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .topbar {
+        height: 60px;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .proof,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vault-stage {
+        min-height: 470px;
+      }
+
+      .device {
+        width: 82%;
+      }
+
+      .floating-note {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        max-width: none;
+      }
+    }
+  </style>
 </head>
-<body>george</body>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark">G</span>
+      <span>George Group</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#security">安全架构</a>
+      <a href="#service">私人服务</a>
+      <a href="#audit">审计与风控</a>
+      <a href="#contact">预约顾问</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">面向高净值数字资产持有者的冷钱包方案</div>
+        <h1>让大额数字资产离线保管，交易仍然可控。</h1>
+        <p class="lead">
+          George Group 为高净值用户提供冷钱包设备、离线签名、资产分层、继承预案和一对一安全顾问服务。私钥不触网，重大转账必须通过物理确认和多重审核。
+        </p>
+        <div class="actions">
+          <a class="btn" href="#contact">预约安全评估</a>
+          <a class="btn secondary" href="#security">查看安全模型</a>
+        </div>
+        <div class="proof">
+          <div class="proof-item">
+            <strong>100%</strong>
+            <span>私钥离线生成与存储</span>
+          </div>
+          <div class="proof-item">
+            <strong>24h</strong>
+            <span>大额交易风险提醒</span>
+          </div>
+          <div class="proof-item">
+            <strong>1:1</strong>
+            <span>专属资产安全顾问</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vault-stage" aria-label="冷钱包设备展示">
+        <div class="device">
+          <div class="device-screen">
+            <div class="screen-label">OFFLINE VAULT</div>
+            <div>
+              <div class="screen-value">$ 12,480,000</div>
+              <div style="margin-top: 10px; color: var(--muted);">跨链资产净值，仅本地可见</div>
+            </div>
+            <div class="screen-row">
+              <span>BTC / ETH / USDT / SOL</span>
+              <span>未连接网络</span>
+            </div>
+          </div>
+          <div class="device-base">
+            <div>
+              <div style="font-size: 13px; color: rgba(255,255,255,0.68); margin-bottom: 10px;">交易确认前需物理按键授权</div>
+              <div class="secure-line"></div>
+            </div>
+            <div class="confirm">OK</div>
+          </div>
+        </div>
+        <div class="floating-note">
+          大额转出前，系统会展示链上地址、金额、手续费和风险标签，用户必须在离线设备上完成最终确认。
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="security">
+      <div class="section-title">
+        <h2>安全不是一个功能，而是一整套资产保管流程。</h2>
+        <p>首页需要先建立信任，再解释方案。高净值用户关心的不只是钱包能不能用，而是资产失控、误转、继承、泄露和被胁迫时怎么办。</p>
+      </div>
+      <div class="grid">
+        <article class="feature">
+          <div class="feature-icon">01</div>
+          <h3>离线私钥</h3>
+          <p>私钥在设备内生成，不上传云端，不经过手机或浏览器环境，降低远程攻击面。</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">02</div>
+          <h3>分层保管</h3>
+          <p>将日常资金、长期持仓、家族储备分层管理，每层设置不同确认规则。</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">03</div>
+          <h3>大额确认</h3>
+          <p>高风险交易展示完整链上信息，并支持延时确认、白名单和人工复核。</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">04</div>
+          <h3>继承预案</h3>
+          <p>支持紧急联系人、密钥分片和遗产交接流程，避免资产因单点失联而永久丢失。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="service">
+      <div class="journey">
+        <div class="concierge">
+          <div>
+            <div class="eyebrow" style="background: rgba(255,255,255,0.08); color: #d9b66f; border-color: rgba(255,255,255,0.2);">PRIVATE CLIENT SERVICE</div>
+            <h2>从购买设备到资产迁移，由专属顾问陪同完成。</h2>
+          </div>
+          <p>高净值用户通常不是缺少钱包，而是缺少可靠的配置流程。首页需要把服务感表达出来，让用户知道自己不会独自处理复杂的链上资产迁移。</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>资产安全评估</h3>
+              <p>确认资产规模、链种、交易频率、现有保管方式和风险暴露点。</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>定制保管策略</h3>
+              <p>设计冷热分层、转账限额、白名单、备份位置和继承机制。</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>离线初始化</h3>
+              <p>在安全环境完成设备初始化、助记词备份、地址校验和测试转账。</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>持续风控支持</h3>
+              <p>提供大额交易提醒、地址风险识别、设备更换和年度安全复核。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section risk-band" id="audit">
+      <div>
+        <h2>每一次重大操作，都应该留下可解释的安全记录。</h2>
+        <p>对高净值用户而言，冷钱包首页需要传达专业控制感：谁能动资产、何时能动、为什么动、动之前经过了哪些确认。</p>
+      </div>
+      <div class="audit-list">
+        <div class="audit-item">
+          <strong>交易白名单</strong>
+          <span>仅允许向已确认地址转出</span>
+        </div>
+        <div class="audit-item">
+          <strong>延时保护</strong>
+          <span>大额转账可设置冷静期</span>
+        </div>
+        <div class="audit-item">
+          <strong>风险地址识别</strong>
+          <span>标记可疑交易对手方</span>
+        </div>
+        <div class="audit-item">
+          <strong>审计记录</strong>
+          <span>本地保留操作摘要与确认凭证</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section footer-cta" id="contact">
+      <div>
+        <h2>先做一次资产保管体检，再决定是否迁移。</h2>
+        <p>这个首页的核心转化不是“立即购买”，而是引导高净值用户预约安全评估。购买硬件只是结果，真正的价值是建立一套不会因为误操作、攻击或失联而失控的资产保管机制。</p>
+        <div class="actions">
+          <a class="btn" href="mailto:advisor@example.com">联系私人顾问</a>
+          <a class="btn secondary" href="#security">查看方案</a>
+        </div>
+      </div>
+      <div class="contact-box">
+        <div class="field">
+          <span>适用资产规模</span>
+          <strong>50 万美元以上</strong>
+        </div>
+        <div class="field">
+          <span>支持资产</span>
+          <strong>主流公链与稳定币</strong>
+        </div>
+        <div class="field">
+          <span>交付方式</span>
+          <strong>设备 + 策略 + 顾问</strong>
+        </div>
+        <div class="field">
+          <span>首次服务</span>
+          <strong>安全评估预约制</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
 </html>
