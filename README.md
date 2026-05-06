@@ -4,6 +4,5 @@
 
 ## 📄 营销平台
 
-- [工作台](https://bananao123.github.io/George/%E5%B7%A5%E4%BD%9C%E5%8F%B0.html)
-- [数据看板](https://bananao123.github.io/George/%E6%95%B0%E6%8D%AE%E7%9C%8B%E6%9D%BF.html)
-
+- [工作台](https://bananaco123.github.io/George/%E5%B7%A5%E4%BD%9C%E5%8F%B0.html)
+- [数据看板](https://bananaco123.github.io/George/%E6%95%B0%E6%8D%AE%E7%9C%8B%E6%9D%BF.html)
