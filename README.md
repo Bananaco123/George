@@ -12,6 +12,6 @@
 
 ## 📄 其他页面
 
-- [George 页面](https://bananaco123.github.io/George/george.html)
-- [教学后台](https://bananaco123.github.io/George/prd-clive-teaching-admin.html)
-- [PRD 对比](https://bananaco123.github.io/George/prototype-prd-compare.html)
+- [工作台](https://bananao123.github.io/George/%E5%B7%A5%E4%BD%9C%E5%8F%B0.html)
+- [数据看板](https://bananao123.github.io/George/%E6%95%B0%E6%8D%AE%E7%9C%8B%E6%9D%BF.html)
+
