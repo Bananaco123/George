@@ -168,21 +168,39 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
 .feat-chips span{background:var(--blue-50);color:var(--blue-deep);font-size:12.5px;padding:5px 11px;border-radius:8px}
 
 /* ============================================================
-   时间节点：每期一条独立时间轴
+   时间节点：横向可滑动周列（细颗粒度任务 + 完成状态）
    ============================================================ */
-.tl-start{font-size:13.5px;color:var(--gray);margin-bottom:22px}
-.tl-start b{color:var(--blue-deep)}
-.tl-phase{margin-bottom:26px}
+.tl-legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--gray);margin-bottom:26px}
+.tl-legend .lg{display:flex;align-items:center;gap:7px}
+.tl-phase{margin-bottom:32px}
 .tl-phase-h{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;color:var(--blue-deep);margin-bottom:14px}
 .tl-phase-h .vtag{color:#fff;background:var(--blue);font-size:12px;padding:3px 12px;border-radius:7px}
-.tl-row{display:flex;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:24px 20px}
-.tl-step{flex:1;text-align:center;position:relative;padding:0 8px}
-.tl-step::before{content:"";position:absolute;top:6px;left:-50%;width:100%;height:2px;background:var(--blue-100);z-index:1}
-.tl-step:first-child::before{display:none}
-.tl-dot{width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue);margin:0 auto 12px;position:relative;z-index:2}
-.tl-when{font-size:12.5px;font-weight:700;color:var(--blue)}
-.tl-what{font-size:12.5px;color:var(--ink);margin-top:5px;line-height:1.45}
-.tl-tbd{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gray);font-size:13.5px;border:1.5px dashed var(--line);border-radius:10px;padding:14px;margin:2px}
+.tl-phase-h .swipe-hint{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--blue-2);display:flex;align-items:center;gap:6px;white-space:nowrap}
+
+/* 横向滚动容器 + 自定义滚动条 */
+.tl-scroll{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;scroll-snap-type:x proximity;scrollbar-color:var(--blue) var(--blue-50);scrollbar-width:thin}
+.tl-scroll::-webkit-scrollbar{height:10px}
+.tl-scroll::-webkit-scrollbar-track{background:var(--blue-50);border-radius:999px}
+.tl-scroll::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--blue),var(--blue-2));border-radius:999px;border:2px solid var(--blue-50)}
+.tl-scroll::-webkit-scrollbar-thumb:hover{background:var(--blue)}
+
+/* 周列卡片 */
+.tl-week{flex:0 0 234px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
+.tl-week .wk-h{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--bg-soft)}
+.tl-week .wk-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:none;box-shadow:0 0 0 3px rgba(27,122,255,.15)}
+.tl-week .wk-when{font-size:13.5px;font-weight:800;color:var(--blue-deep);line-height:1.2}
+.tl-week .wk-body{padding:4px 14px 12px}
+
+/* 任务行 + 完成状态 */
+.tl-task{display:flex;align-items:flex-start;gap:9px;padding:9px 0;font-size:12.8px;line-height:1.5;color:var(--ink)}
+.tl-task + .tl-task{border-top:1px solid var(--bg-soft)}
+.st{flex:none;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.st.done{background:var(--green);color:#fff}
+.st.doing{background:var(--blue);color:#fff;box-shadow:0 0 0 3px rgba(27,122,255,.18)}
+.st.todo{background:#fff;border:2px solid var(--line)}
+.tl-task.done .tx{color:var(--gray)}
+.tl-task.doing .tx{font-weight:700;color:var(--blue-deep)}
+.tl-tbd{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gray);font-size:13.5px;border:1.5px dashed var(--line);border-radius:12px;padding:26px;background:#fff}
 
 /* ============================================================
    风险表（逐期）
@@ -234,6 +252,9 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
   .sb-children{display:block!important}
   .sb-item .chev{display:none}
   .phase-block{page-break-inside:avoid;break-inside:avoid}
+  .tl-scroll{flex-wrap:wrap;overflow:visible!important}
+  .tl-week{flex:0 0 auto;width:230px;page-break-inside:avoid;break-inside:avoid}
+  .tl-phase-h .swipe-hint{display:none}
   a[href]{color:inherit;text-decoration:none}
 }
 </style>
@@ -504,37 +525,110 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
   <div class="sec-head">
     <span class="sec-tag">Timeline</span>
     <h2 class="sec-title">时间节点</h2>
+    <p class="sec-sub">按周拆分的细颗粒度任务节点；每个版本一条横向时间带，可在容器内左右滑动查看全部周节点。</p>
   </div>
 
-  <!-- V1.0 时间轴 -->
+  <!-- 状态图例 -->
+  <div class="tl-legend">
+    <span class="lg"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>已完成</span>
+    <span class="lg"><span class="st doing"></span>进行中</span>
+    <span class="lg"><span class="st todo"></span>待开始</span>
+  </div>
+
+  <!-- V1.0 时间带（横向可滑动） -->
   <div class="tl-phase">
-    <div class="tl-phase-h"><span class="vtag">V1.0</span>一线销售最小业务闭环</div>
-    <div class="tl-row">
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">6 月 · 第 1 周</div><div class="tl-what">确定迭代方向</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">6 月 · 第 2 周</div><div class="tl-what">完成 V1.0 需求定稿</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">6 月 · 第 3 周</div><div class="tl-what">完成外部核心接口对接，启动开发</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">7 月 · 第 2 周</div><div class="tl-what">完成系统基础建设</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">7 月 · 第 4 周</div><div class="tl-what">完成 1.0 迭代</div></div>
+    <div class="tl-phase-h"><span class="vtag">V1.0</span>一线销售最小业务闭环<span class="swipe-hint">← 横向滑动查看全部周节点 →</span></div>
+    <div class="tl-scroll">
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">5 月 · 第 4 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">完成 AI 业务员工程化迭代</span></div>
+          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">完成营销 OS 平台整体规划定版</span></div>
+          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">完成 SCRM 底层消息内核更换</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 1 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task doing"><span class="st doing"></span><span class="tx">SCRM 翻译能力优化</span></div>
+          <div class="tl-task doing"><span class="st doing"></span><span class="tx">AI 业务员需求输出</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 2 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">AI 销冠 Agent 需求输出</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS 平台底层框架需求输出</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 4 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 OS 平台底层框架搭建</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 3 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 SCRM 能力迁移</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">8 月 · 第 1 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 OS 平台一期建设</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- V2.0 时间轴 -->
+  <!-- V2.0 时间带（横向可滑动） -->
   <div class="tl-phase">
-    <div class="tl-phase-h"><span class="vtag">V2.0</span>营销获客 + 全交付周期</div>
-    <div class="tl-row">
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">6 月 · 第 3 周</div><div class="tl-what">确定 V2.0 规划</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">6 月 · 第 4 周</div><div class="tl-what">开启 V2.0 设计</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">7 月 · 第 4 周</div><div class="tl-what">完成 V2.0 设计需求定稿</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-when">8 月 · 第 1 周</div><div class="tl-what">开始 V2.0 功能开发</div></div>
+    <div class="tl-phase-h"><span class="vtag">V2.0</span>营销获客 + 全交付周期<span class="swipe-hint">← 横向滑动查看全部周节点 →</span></div>
+    <div class="tl-scroll">
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 3 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">确定 V2.0 规划</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 4 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">开启 V2.0 设计</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 4 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 V2.0 设计需求定稿</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">8 月 · 第 1 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">开始 V2.0 功能开发</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- V3.0 时间轴 -->
+  <!-- V3.0 时间带 -->
   <div class="tl-phase">
     <div class="tl-phase-h"><span class="vtag">V3.0</span>集团经营资产数字化</div>
-    <div class="tl-row">
-      <div class="tl-tbd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>整个阶段内容待定（TBD）</div>
-    </div>
+    <div class="tl-tbd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>整个阶段内容待定（TBD）</div>
   </div>
 </section>
 
@@ -598,10 +692,10 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
    ============================================================ */
 var OVERVIEW = {
   v1:{ name:"V1.0 · 销售一线", rows:[
-    ["面向角色","PM 助理 + AI 业务员"],
+    ["面向角色","PM 助理 + PM"],
     ["核心场景","售前筛选询盘 + 售中客户跟进"],
     ["解决问题","询盘接待效率低；线索分配规则黑盒；售中环节缺乏跟进标准"],
-    ["角色赋能","<b>PM 助理</b>、<b>AI 业务员</b>：由 AI 业务员 Agent 接管整个售前循环。"],
+    ["角色赋能","<b>PM 助理</b>：由 AI 业务员 Agent 接管售前询盘，并在有监督的情况下执行线索分配；<b>PM</b>：由 AI 销冠辅助客户跟进"],
     ["业务闭环","进线 → AI 接待 → 线索分配 → 转人工 → PM 售中（AI 销冠辅助）→ 知识 / 案例沉淀"],
     ["核心模块","工作台 / SCRM / 会话管理 / AI 业务员 / AI 销冠 + 知识库设置"],
     ["价值","<b>询盘自动响应</b>、<b>线索自动转派</b>、<b>AI 辅助售中接待</b>、<b>销冠经验可复制沉淀</b>"]
@@ -618,7 +712,7 @@ var OVERVIEW = {
   v3:{ name:"V3.0 · 集团经营", rows:[
     ["面向角色","一号位 + 金牌销售 + 新人销售"],
     ["核心场景","集团经营决策 + 经验资产化 + 培训赋能"],
-    ["解决问题","提供更多集团经营视角数据；解决 AI 销冠经验难以复制的问题；优化新人培训机制，解决培训周期长、人才成长慢"],
+    ["解决问题","提供更多集团经营视角数据；解决 AI 销冠经验难以复制的问题；优化新人培训机制，解决培训周期长、人才成长慢的问题"],
     ["角色赋能","<b>一号位驾驶舱</b>（营收贡献与转化效率 / 营收结构与增速 / 客户增长与品类需求 / 客情与市场变化）；<b>销冠经验数字资产贡献</b>（制作场景 Skill 应用 Agent，调用获 Token，Skills 广场）；<b>新人销售培训实战案例分享</b>（多模态实景化培训）"],
     ["业务闭环","经验 → <b>Skill 资产</b> → <b>Token 激励</b> → 培训赋能"],
     ["核心模块","CEO 驾驶舱 / 数字资产（Skills · Token · Skills 广场）/ 培训实战"],
