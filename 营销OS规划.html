@@ -170,8 +170,6 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
 /* ============================================================
    时间节点：横向可滑动周列（细颗粒度任务 + 完成状态）
    ============================================================ */
-.tl-legend{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--gray);margin-bottom:26px}
-.tl-legend .lg{display:flex;align-items:center;gap:7px}
 .tl-phase{margin-bottom:32px}
 .tl-phase-h{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;color:var(--blue-deep);margin-bottom:14px}
 .tl-phase-h .vtag{color:#fff;background:var(--blue);font-size:12px;padding:3px 12px;border-radius:7px}
@@ -200,6 +198,7 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
 .st.todo{background:#fff;border:2px solid var(--line)}
 .tl-task.done .tx{color:var(--gray)}
 .tl-task.doing .tx{font-weight:700;color:var(--blue-deep)}
+.tl-task .tx strong{color:var(--blue-deep);font-weight:800}
 .tl-tbd{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gray);font-size:13.5px;border:1.5px dashed var(--line);border-radius:12px;padding:26px;background:#fff}
 
 /* ============================================================
@@ -528,13 +527,6 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
     <p class="sec-sub">按周拆分的细颗粒度任务节点；每个版本一条横向时间带，可在容器内左右滑动查看全部周节点。</p>
   </div>
 
-  <!-- 状态图例 -->
-  <div class="tl-legend">
-    <span class="lg"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>已完成</span>
-    <span class="lg"><span class="st doing"></span>进行中</span>
-    <span class="lg"><span class="st todo"></span>待开始</span>
-  </div>
-
   <!-- V1.0 时间带（横向可滑动） -->
   <div class="tl-phase">
     <div class="tl-phase-h"><span class="vtag">V1.0</span>一线销售最小业务闭环<span class="swipe-hint">← 横向滑动查看全部周节点 →</span></div>
@@ -552,37 +544,55 @@ section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
       <div class="tl-week">
         <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 1 周</span></div>
         <div class="wk-body">
-          <div class="tl-task doing"><span class="st doing"></span><span class="tx">SCRM 翻译能力优化</span></div>
-          <div class="tl-task doing"><span class="st doing"></span><span class="tx">AI 业务员需求输出</span></div>
+          <div class="tl-task doing"><span class="st doing"></span><span class="tx">客户端：SCRM 翻译能力上线</span></div>
+          <div class="tl-task doing"><span class="st doing"></span><span class="tx">客户端：云账号登录 + 侧边栏优化</span></div>
         </div>
       </div>
 
       <div class="tl-week">
         <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 2 周</span></div>
         <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">AI 销冠 Agent 需求输出</span></div>
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS 平台底层框架需求输出</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">客户端：UI/UX 升级迭代</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">客户端：AI 业务员需求启动</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：系统基础架构建设启动</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 3 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：三方接口提供</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：SCRM 迁移需求启动</span></div>
         </div>
       </div>
 
       <div class="tl-week">
         <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 4 周</span></div>
         <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 OS 平台底层框架搭建</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">客户端：新版客户端发布</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：AI 销冠、线索询盘、知识库等完整 1.0 需求启动</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 1 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：V1.0 提测</span></div>
+        </div>
+      </div>
+
+      <div class="tl-week">
+        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 2 周</span></div>
+        <div class="wk-body">
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">现场网络 / 跨境连接测试</span></div>
         </div>
       </div>
 
       <div class="tl-week">
         <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 3 周</span></div>
         <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 SCRM 能力迁移</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">8 月 · 第 1 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 OS 平台一期建设</span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx"><strong>7/16 正式上线</strong></span></div>
+          <div class="tl-task todo"><span class="st todo"></span><span class="tx">上线后首周现场支持</span></div>
         </div>
       </div>
 
