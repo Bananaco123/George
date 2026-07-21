@@ -66,10 +66,10 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 
 .timeline-scroll-hint{margin:-8px 0 14px;text-align:right;color:#5B95FF;font-size:11px;font-weight:800}.week-timeline{display:flex;gap:18px;overflow-x:auto;padding:2px 2px 18px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--blue-2) #E8F1FF}.week-timeline::-webkit-scrollbar{height:10px}.week-timeline::-webkit-scrollbar-track{border-radius:999px;background:#E8F1FF}.week-timeline::-webkit-scrollbar-thumb{border-radius:999px;background:var(--blue-2)}.week-card{display:flex;flex:0 0 310px;min-height:270px;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(15,39,71,.06);scroll-snap-align:start}.week-card-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);background:#F6F9FD;color:var(--navy);font-size:18px;font-weight:800}.week-dot{width:14px;height:14px;flex:none;border-radius:50%;background:#2F83F7;box-shadow:0 0 0 5px #DCEAFF}.week-list{flex:1;margin:0;padding:8px 22px 24px;list-style:none}.week-item{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;padding:16px 0;border-bottom:1px solid #EDF2F7;color:var(--navy);font-size:13px;font-weight:700;line-height:1.55}.week-item:last-child{border-bottom:0}.week-item.done{color:#748091;font-weight:500}.week-status{display:flex;width:22px;height:22px;align-items:center;justify-content:center;margin-top:1px;border:2px solid #DFE6EF;border-radius:50%;color:#fff;font-size:13px;font-weight:900}.week-status.done{border-color:#15B884;background:#15B884}.week-card-link{display:block;margin:0 22px 20px;padding-top:14px;border-top:1px dashed #D9E3EF;color:var(--blue);text-align:center;font-size:13px;font-weight:800;text-decoration:none}.week-card-link:hover{text-decoration:underline}
 
-.future-card{min-height:200px;border-style:dashed}.future-card .version{display:inline-block;margin-bottom:12px;padding:5px 10px;border-radius:7px;background:var(--navy);color:#fff;font-size:11px;font-weight:800}.future-card h3{font-size:18px}.future-card .placeholder{display:inline-block;margin-top:16px;color:var(--blue);font-size:11px;font-weight:800}.foot-note{text-align:center;margin-top:36px;color:var(--muted);font-size:11px}
+.future-plans{display:grid;gap:22px}.future-plan{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow)}.future-plan-head{display:flex;align-items:center;gap:16px;padding:20px 22px;background:var(--navy);color:#fff}.future-plan.v3 .future-plan-head{background:linear-gradient(135deg,#123B6D,#1A4D8F)}.future-version{display:flex;width:56px;height:56px;flex:none;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.1);font-size:13px;font-weight:900}.future-heading h3{font-size:20px}.future-heading p{margin-top:5px;color:#BDD0E6;font-size:12px}.future-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:20px 22px;border-bottom:1px solid var(--line);background:#F8FAFC}.future-meta-item{padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#fff}.future-meta-item b{display:block;margin-bottom:5px;color:var(--blue);font-size:11px}.future-meta-item span{color:#475569;font-size:12px;line-height:1.6}.future-loop{display:flex;gap:14px;align-items:flex-start;margin:20px 22px 0;padding:14px 16px;border-left:4px solid var(--blue-2);border-radius:8px;background:var(--blue-50)}.future-loop b{flex:none;color:var(--navy);font-size:12px}.future-loop span{color:#3E536C;font-size:12px;line-height:1.6}.future-modules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 22px}.future-module{padding:17px;border:1px solid var(--line);border-radius:10px;background:#fff}.future-module h4{color:var(--navy);font-size:14px}.future-module p{margin-top:7px;color:var(--gray);font-size:11.5px;line-height:1.6}.future-module ul{margin:11px 0 0 17px;color:#4B5A6E;font-size:11.5px;line-height:1.6}.future-module li{margin:4px 0}.future-values{display:flex;flex-wrap:wrap;gap:8px;padding:0 22px 22px}.future-values span{padding:6px 10px;border-radius:7px;background:#EDF4FC;color:var(--blue);font-size:10.5px;font-weight:700}.foot-note{text-align:center;margin-top:36px;color:var(--muted);font-size:11px}
 
-@media(max-width:1150px){section{padding:58px 34px}.g4{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(4,1fr)}.flow-node:not(:last-child):after{display:none}.tool-grid.business{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:900px){:root{--nav-w:0px}#sidenav{display:none}main{margin-left:0}.g2,.g3,.g4,.overview-main{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.tool-grid.business{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:1fr}.entry-flow{grid-template-columns:1fr}.entry-step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-18px}.cover-inner h1{font-size:42px}.cover-inner h1 .sub{font-size:24px}.week-card{flex-basis:280px}}
+@media(max-width:1150px){section{padding:58px 34px}.g4{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(4,1fr)}.flow-node:not(:last-child):after{display:none}.tool-grid.business{grid-template-columns:repeat(3,minmax(0,1fr))}.future-modules{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){:root{--nav-w:0px}#sidenav{display:none}main{margin-left:0}.g2,.g3,.g4,.overview-main,.future-meta,.future-modules{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.tool-grid.business{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:1fr}.entry-flow{grid-template-columns:1fr}.entry-step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-18px}.cover-inner h1{font-size:42px}.cover-inner h1 .sub{font-size:24px}.week-card{flex-basis:280px}.future-plan-head{align-items:flex-start}.future-loop{display:block}.future-loop span{display:block;margin-top:6px}}
 @media print{@page{size:A4 landscape;margin:10mm}body{background:#fff}#progress-bar,#sidenav,.print-btn{display:none!important}main{margin-left:0}section{padding:18px 4px;max-width:100%;page-break-after:always;break-after:page}section:last-child{page-break-after:auto}#cover{min-height:auto;padding:55px}.card,.toolbar-showcase,.week-card{box-shadow:none}.timeline-scroll-hint{display:none}.week-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;overflow:visible;padding-bottom:0}.week-card{min-width:0;min-height:0}.week-card-head{padding:10px;font-size:12px}.week-list{padding:4px 10px 10px}.week-item{grid-template-columns:18px 1fr;gap:6px;padding:8px 0;font-size:8.5px}.week-status{width:16px;height:16px;font-size:9px}a{color:inherit;text-decoration:none}}
 </style>
 </head>
@@ -87,7 +87,7 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
     <a href="#integration"><span class="num">06</span>CRM / ERP 入口</a>
     <a href="#workbench"><span class="num">07</span>角色工作台</a>
     <a href="#timeline"><span class="num">08</span>时间轴</a>
-    <a href="#future"><span class="num">09</span>后续方向</a>
+    <a href="#future"><span class="num">09</span>后续规划</a>
   </nav>
   <button class="print-btn" onclick="window.print()">打印 / 导出 PDF</button>
   <div class="nav-foot">敬城国际 · 服务 GEORGE &amp; OKBuild</div>
@@ -262,10 +262,41 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 </section>
 
 <section id="future">
-  <div class="sec-head"><span class="sec-tag">Future Direction</span><h2 class="sec-title">V2.0 / V3.0 方向占位</h2><p class="sec-sub">后续版本只保留方向，不在当前规划中设置范围明细和时间。</p></div>
-  <div class="grid g2">
-    <div class="card future-card"><span class="version">V2.0</span><h3>项目全周期深化</h3><p>围绕售前、售中、售后推进更完整的项目管理、业务自动化和高级分析能力。</p><span class="placeholder">方向保留 · 待重新规划</span></div>
-    <div class="card future-card"><span class="version">V3.0</span><h3>集团经营与经验资产化</h3><p>延续集团经营视角、经验资产、Skill 生态与培训赋能方向。</p><span class="placeholder">方向保留 · 待重新规划</span></div>
+  <div class="sec-head"><span class="sec-tag">Future Roadmap</span><h2 class="sec-title">V2.0 / V3.0 规划</h2></div>
+  <div class="future-plans">
+    <article class="future-plan v2">
+      <div class="future-plan-head"><span class="future-version">V2.0</span><div class="future-heading"><h3>全交付周期与经营分析</h3><p>承接 V1.0 的 AI 营销、销售承接与轻量工作台，深化项目管理、数据看板和经营复盘。</p></div></div>
+      <div class="future-meta">
+        <div class="future-meta-item"><b>面向角色</b><span>投放运营、销售 PM、部门主管</span></div>
+        <div class="future-meta-item"><b>核心场景</b><span>投放复盘、项目全周期管理、部门经营分析</span></div>
+        <div class="future-meta-item"><b>解决问题</b><span>投放效率和转化率不清晰；项目卡点难以复盘；团队战力与资源投入难以比较。</span></div>
+        <div class="future-meta-item"><b>核心模块</b><span>AI 营销深化、项目全周期、运营 / PM / 部门数据看板</span></div>
+      </div>
+      <div class="future-loop"><b>业务闭环</b><span>营销内容 → 投放转化 → 销售承接 → 项目交付 → 复盘沉淀</span></div>
+      <div class="future-modules">
+        <div class="future-module"><h4>AI 营销深化</h4><p>在 V1.0 已前置能力基础上，强化内容生产与投放协同。</p><ul><li>市场咨询与灵感发现</li><li>脚本仿写与素材调用</li><li>黄金组件与复用素材</li></ul></div>
+        <div class="future-module"><h4>项目全周期</h4><p>将销售 PM 从售前、售中延伸至售后交付。</p><ul><li>项目总览与节点管理</li><li>卡点诊断与推进</li><li>售前、售中、售后过程复盘</li></ul></div>
+        <div class="future-module"><h4>角色数据看板</h4><p>由 V1.0 轻量工作台升级为经营分析入口。</p><ul><li>运营：流量、ROI、素材、漏斗</li><li>PM：项目总览与卡点分析</li><li>部门：项目 / 人员分析与排行</li></ul></div>
+      </div>
+      <div class="future-values"><span>可复用素材资源</span><span>ROI 转化漏斗</span><span>项目卡点可诊断</span><span>团队能力可视化</span></div>
+    </article>
+
+    <article class="future-plan v3">
+      <div class="future-plan-head"><span class="future-version">V3.0</span><div class="future-heading"><h3>集团经营资产数字化</h3><p>从业务执行进一步延伸到集团经营决策、经验资产化和培训赋能。</p></div></div>
+      <div class="future-meta">
+        <div class="future-meta-item"><b>面向角色</b><span>集团一号位、金牌销售、新人销售</span></div>
+        <div class="future-meta-item"><b>核心场景</b><span>集团经营决策、销冠经验资产化、新人培训实战</span></div>
+        <div class="future-meta-item"><b>解决问题</b><span>集团经营视角不足；销冠经验难复制；新人培训周期长、成长速度慢。</span></div>
+        <div class="future-meta-item"><b>核心模块</b><span>CEO 驾驶舱、数字资产、Skills 广场、Token 激励、培训实战</span></div>
+      </div>
+      <div class="future-loop"><b>业务闭环</b><span>经验沉淀 → Skill 资产 → Token 激励 → 培训赋能 → 经营决策</span></div>
+      <div class="future-modules">
+        <div class="future-module"><h4>CEO 驾驶舱</h4><ul><li>创客级营收贡献与转化效率</li><li>营收结构与增速分析</li><li>客户增长与品类需求趋势</li><li>客情变化与市场变化</li></ul></div>
+        <div class="future-module"><h4>数字资产</h4><ul><li>制作场景 Skill 并应用到 Agent</li><li>Skills 广场分发与复用</li><li>他人调用 Skill 获得 Token 激励</li></ul></div>
+        <div class="future-module"><h4>培训实战</h4><ul><li>正向与流失案例分享</li><li>对话式、实景式多模态培训</li><li>沉淀可对外赋能的课程</li></ul></div>
+      </div>
+      <div class="future-values"><span>经验变资产</span><span>资产再赋能</span><span>经营可决策</span></div>
+    </article>
   </div>
   <div class="foot-note">G-Builder OS · V1.0 项目规划与进度 ｜ 敬城国际 · 服务 GEORGE &amp; OKBuild</div>
 </section>
