@@ -3,806 +3,277 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>G-Builder OS · 三期迭代计划</title>
-<!-- 字体 CDN：Inter（英文/数字）；中文回退到系统苹方/思源黑体 -->
+<title>G-Builder OS · V1.0 项目规划与进度</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-/* ============================================================
-   设计变量
-   ============================================================ */
 :root{
-  --blue:#1B7AFF;
-  --blue-2:#5A9BFF;
-  --blue-deep:#0B1F3A;
-  --blue-50:#EAF2FF;
-  --blue-100:#D6E6FF;
-  --gray:#6B7280;
-  --ink:#111827;
-  --bg:#FFFFFF;
-  --bg-soft:#F5F7FA;
-  --line:#E5E8EF;
-  --amber:#F59E0B;
-  --green:#10B981;
-  --radius:16px;
-  --shadow:0 4px 18px rgba(11,31,58,.06);
-  --shadow-lg:0 12px 40px rgba(11,31,58,.12);
-  --nav-w:248px;
-  --font:"Inter","PingFang SC","Hiragino Sans GB","Source Han Sans SC","Microsoft YaHei",sans-serif;
+  --blue:#1A4D8F;--blue-2:#2E7BD6;--cyan:#00A3B4;--navy:#0B1F3A;
+  --blue-50:#EBF3FB;--bg:#F8FAFC;--soft:#F0F4F8;--white:#fff;
+  --ink:#1F2937;--gray:#6B7280;--muted:#94A3B8;--line:#E2E8F0;
+  --green:#10A86A;--amber:#E59B26;--red:#D32F2F;--nav-w:248px;
+  --font:"Inter","PingFang SC","Microsoft YaHei",sans-serif;
+  --shadow:0 8px 28px rgba(11,31,58,.07);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:24px}
-body{font-family:var(--font);color:var(--ink);background:var(--bg-soft);line-height:1.6;-webkit-font-smoothing:antialiased}
-
-#progress-bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),#5AA0FF);z-index:1000;transition:width .15s ease-out}
-
-/* ============================================================
-   左侧固定导航
-   ============================================================ */
-#sidenav{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:var(--blue-deep);color:#fff;display:flex;flex-direction:column;padding:28px 18px;z-index:900}
-#sidenav .brand{font-weight:800;font-size:16px;letter-spacing:.3px}
-#sidenav .brand small{display:block;font-weight:400;font-size:11px;color:#9DB4D6;margin-top:4px}
-#sidenav nav{margin-top:24px;flex:1;overflow-y:auto}
-#sidenav nav a{display:flex;align-items:center;gap:10px;color:#C3D2EA;text-decoration:none;font-size:13.5px;padding:9px 12px;border-radius:9px;margin-bottom:2px;transition:background .15s,color .15s}
-#sidenav nav a .num{font-size:11px;font-weight:700;color:#6E86AD;width:30px;text-align:center;flex:none}
-#sidenav nav a:hover{background:rgba(255,255,255,.06);color:#fff}
-#sidenav nav a.active{background:var(--blue);color:#fff}
-#sidenav nav a.active .num{color:#fff}
-.print-btn{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;cursor:pointer;background:#fff;color:var(--blue-deep);font-weight:600;font-size:13.5px;padding:11px;border-radius:10px;transition:transform .12s,box-shadow .12s;font-family:var(--font)}
-.print-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.25)}
-#sidenav .nav-foot{font-size:11px;color:#6E86AD;margin-top:14px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
-
-/* ============================================================
-   主体通用
-   ============================================================ */
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+#progress-bar{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue-2),var(--cyan));z-index:1000}
+#sidenav{position:fixed;inset:0 auto 0 0;width:var(--nav-w);padding:26px 18px;background:var(--navy);color:#fff;display:flex;flex-direction:column;z-index:900}
+.brand{font-size:16px;font-weight:800;letter-spacing:.2px}.brand small{display:block;margin-top:4px;color:#9DB4D6;font-size:11px;font-weight:500}
+#nav{margin-top:22px;flex:1;overflow-y:auto;padding-right:2px}
+#nav a{display:flex;align-items:center;gap:9px;padding:8px 10px;margin-bottom:2px;border-radius:8px;color:#C3D2EA;text-decoration:none;font-size:12.5px;transition:.15s}
+#nav a:hover{background:rgba(255,255,255,.07);color:#fff}#nav a.active{background:var(--blue-2);color:#fff}
+#nav .num{width:25px;flex:none;text-align:center;font-size:10px;font-weight:800;color:#6E86AD}#nav a.active .num{color:#fff}
+.print-btn{display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:9px;padding:10px;background:#fff;color:var(--navy);font:600 13px var(--font);cursor:pointer}
+.nav-foot{margin-top:12px;padding-top:11px;border-top:1px solid rgba(255,255,255,.08);color:#6E86AD;font-size:10.5px}
 main{margin-left:var(--nav-w)}
-section{padding:74px 60px;max-width:1200px;margin:0 auto;scroll-margin-top:20px}
-.sec-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--blue);text-transform:uppercase;margin-bottom:10px}
-.sec-title{font-size:29px;font-weight:800;color:var(--blue-deep);letter-spacing:-.5px}
-.sec-sub{font-size:15px;color:var(--gray);margin-top:8px;max-width:900px}
-.sec-head{margin-bottom:32px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
-.grid{display:grid;gap:18px}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g2{grid-template-columns:repeat(2,1fr)}
-.todo{color:var(--amber);font-weight:600}
-.chip-new{display:inline-block;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:middle}
-.chip-up{display:inline-block;background:var(--blue-2);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:middle}
+section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
+.sec-head{margin-bottom:28px}.sec-tag{display:block;margin-bottom:8px;color:var(--blue-2);font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}
+.sec-title{color:var(--navy);font-size:29px;line-height:1.25;letter-spacing:-.5px}.sec-sub{max-width:900px;margin-top:9px;color:var(--gray);font-size:14px}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:var(--shadow)}
+.card h3{color:var(--navy);font-size:16px}.card p{margin-top:7px;color:var(--gray);font-size:13px}
+.kicker{display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;padding:4px 9px;border-radius:999px;background:var(--blue-50);color:var(--blue);font-size:10.5px;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.chip{padding:5px 9px;border-radius:7px;background:var(--soft);color:#45566c;font-size:11.5px}.chip.blue{background:var(--blue-50);color:var(--blue)}
+.callout{padding:18px 20px;border:1px solid #CFE0F3;border-left:4px solid var(--blue-2);border-radius:10px;background:linear-gradient(90deg,var(--blue-50),#fff);color:#29425f;font-size:13.5px}
 
-/* ============================================================
-   封面与定位
-   ============================================================ */
-#cover{margin:0;max-width:none;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-  background:radial-gradient(1200px 600px at 75% -10%,rgba(27,122,255,.35),transparent 60%),radial-gradient(900px 500px at 10% 110%,rgba(27,122,255,.22),transparent 55%),linear-gradient(160deg,#0B1F3A 0%,#0E294F 55%,#0B1F3A 100%);
-  color:#fff;padding:64px;position:relative;overflow:hidden}
-#cover .grid-deco{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(circle at 50% 40%,#000,transparent 75%)}
-#cover .inner{position:relative;z-index:2;max-width:960px}
-#cover .eyebrow{font-size:13px;letter-spacing:6px;color:#7FB0FF;font-weight:600;text-transform:uppercase}
-#cover h1{font-size:58px;font-weight:800;letter-spacing:-1px;margin:22px 0 0;line-height:1.18}
-#cover h1 .l2{display:block;color:#fff}
-#cover h1 .l1{display:block;color:#fff}
-#cover h1 .l1 .dot{color:var(--blue)}
-/* 封面：进度节点（上） + 版本标签（下），标签与节点居中对齐 */
-.cover-roadmap{max-width:1120px;width:90%;margin:42px auto 0}
-.cr-track{position:relative;display:grid;grid-template-columns:repeat(3,1fr);align-items:center;height:20px}
-.cr-line{position:absolute;top:50%;left:16.667%;right:16.667%;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--blue),rgba(127,176,255,.5));transform:translateY(-50%);z-index:1}
-.cr-node{display:flex;justify-content:center;position:relative;z-index:2}
-.cr-dot{width:18px;height:18px;border-radius:50%;background:#7FB0FF;border:3px solid #0E294F}
-.cr-dot.lead{background:var(--blue);box-shadow:0 0 0 6px rgba(27,122,255,.22)}
-.cr-labels{display:grid;grid-template-columns:repeat(3,1fr);margin-top:18px}
-.cr-label{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}
-.cr-label .v{font-size:16px;font-weight:800;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:9px 52px;border-radius:999px}
-.cr-label:first-child .v{background:var(--blue);border-color:var(--blue)}
-.cr-label .t{font-size:13px;color:#9DB4D6}
-#cover .foot{position:absolute;bottom:32px;left:0;right:0;text-align:center;font-size:13px;color:#8FA6C9;z-index:2}
+#cover{max-width:none;min-height:100vh;padding:68px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:radial-gradient(800px 440px at 80% 0%,rgba(46,123,214,.34),transparent 65%),radial-gradient(720px 420px at 5% 100%,rgba(0,163,180,.2),transparent 60%),linear-gradient(150deg,#08192f,#0f315b 58%,#0b1f3a);position:relative;overflow:hidden}
+#cover:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(circle at center,#000,transparent 80%)}
+.cover-inner{position:relative;z-index:1;max-width:980px}.eyebrow{color:#83B7F4;font-size:12px;font-weight:700;letter-spacing:5px}.cover-inner h1{margin-top:20px;font-size:56px;line-height:1.14;letter-spacing:-1px}.cover-inner h1 span{display:block}.cover-inner h1 .sub{margin-top:8px;color:#DCEBFC;font-size:31px;font-weight:600}
+.cover-desc{max-width:760px;margin:24px auto 0;color:#BFD2E9;font-size:15px}
+.cover-foot{position:absolute;bottom:28px;left:0;right:0;color:#819BB9;font-size:11.5px}
 
-/* ============================================================
-   背景：原则卡
-   ============================================================ */
-.principle .pico{width:42px;height:42px;border-radius:11px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.principle h3{font-size:17px;color:var(--blue-deep);margin-bottom:6px}
-.principle p{font-size:13.5px;color:var(--gray)}
+.goal-card{position:relative;overflow:hidden}.goal-card:before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--blue-2)}
+.goal-card .ico,.cap-card .ico,.role-card .ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;background:var(--blue-50);color:var(--blue);font-size:17px;font-weight:800}
 
-/* ============================================================
-   Tab（三期规划总览）
-   ============================================================ */
-.tabs{display:flex;gap:8px;margin-bottom:20px}
-.tab-btn{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--gray);font-weight:700;font-size:15px;padding:11px 26px;border-radius:10px;font-family:var(--font);transition:.15s}
-.tab-btn:hover{border-color:var(--blue-2)}
-.tab-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 6px 18px rgba(27,122,255,.25)}
-.tab-panel{display:none;animation:fadeIn .3s ease}
-.tab-panel.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.ov-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.ov-table td{padding:15px 20px;font-size:13.5px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.7}
-.ov-table tr:last-child td{border-bottom:none}
-.ov-table .field{width:120px;font-weight:700;color:var(--blue-deep);background:var(--bg-soft);font-size:13px}
-.ov-table b{color:var(--blue-deep)}
-.ov-print-title{display:none;font-size:18px;font-weight:800;color:var(--blue);margin:18px 0 10px}
+.flow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:stretch}.flow-node{position:relative;min-height:122px;padding:16px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;text-align:center;box-shadow:0 4px 14px rgba(11,31,58,.05)}
+.flow-node:not(:last-child):after{content:"→";position:absolute;right:-12px;top:47%;z-index:2;width:16px;color:var(--blue-2);font-weight:800}.flow-node .n{width:24px;height:24px;margin:0 auto 9px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;font-size:10px;font-weight:800}.flow-node b{display:block;color:var(--navy);font-size:12.5px}.flow-node small{display:block;margin-top:5px;color:var(--gray);font-size:10.5px;line-height:1.45}
 
-/* ============================================================
-   侧边栏 mockup（拟真 · 一级/二级交互）
-   ============================================================ */
-.sb-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-.sb{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;font-size:13px}
-.sb-top{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
-.sb-top .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1B7AFF,#0E5FD6);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
-.sb-top .pname{font-weight:700;color:var(--blue-deep);font-size:13.5px;line-height:1.2}
-.sb-top .pver{font-size:10.5px;color:var(--gray)}
-.sb-search{margin:12px 12px 6px;background:var(--bg-soft);border-radius:9px;padding:8px 11px;display:flex;align-items:center;gap:8px;color:#9AA6B8;font-size:12px}
-.sb-list{padding:6px 0 12px}
-.sb-group{font-size:10.5px;color:#9AA6B8;letter-spacing:.6px;padding:10px 18px 4px;font-weight:700;text-transform:uppercase}
-.sb-node{margin:0 8px}
-.sb-item{display:flex;align-items:center;gap:10px;padding:9px 12px;color:#374151;border-radius:9px;cursor:pointer;position:relative;transition:background .12s,color .12s}
-.sb-item:hover{background:var(--bg-soft)}
-.sb-item .ic{width:20px;height:20px;border-radius:6px;background:#EEF2F8;display:flex;align-items:center;justify-content:center;flex:none;color:#8A97AC;font-size:11px}
-.sb-item .lbl{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sb-item.sel{background:var(--blue-50);color:var(--blue);font-weight:700}
-.sb-item.sel .ic{background:var(--blue);color:#fff}
-.sb-item.has-dot .ic{background:var(--blue);color:#fff}
-.sb-item .chev{flex:none;color:#B4BECC;transition:transform .25s}
-.sb-item.open .chev{transform:rotate(90deg);color:var(--blue)}
-.sb-children{display:none;margin:2px 0 6px 22px;padding-left:14px;border-left:1.5px solid var(--line)}
-.sb-item.open + .sb-children{display:block}
-.sb-child{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12.5px;color:var(--gray);border-radius:7px;cursor:pointer}
-.sb-child::before{content:"";width:5px;height:5px;border-radius:50%;background:#C3CCDA;flex:none}
-.sb-child:hover{background:var(--bg-soft);color:var(--blue)}
-.sb-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--gray);margin-top:8px}
-.sb-note{text-align:center;color:var(--gray);font-size:13px;margin-top:20px;font-style:italic}
+.overview-main{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.overview-stack{display:grid;gap:12px}.overview-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff}.overview-row b{color:var(--blue);font-size:12.5px}.overview-row span{color:#435168;font-size:13px}
+.architecture-stack{display:grid;gap:12px}.architecture{padding:20px;border-radius:12px;background:var(--navy);color:#fff}.architecture h3{font-size:16px}.architecture p{margin-top:6px;color:#AFC5DF;font-size:12.5px}.arch-list{display:grid;gap:9px;margin-top:14px}.arch-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.07);font-size:12px}.arch-item em{color:#83B7F4;font-size:10px;font-style:normal}.architecture.resource{border:1px solid #CFE0F3;background:#fff;color:var(--navy);box-shadow:var(--shadow)}.architecture.resource p{color:var(--gray)}.architecture.resource .arch-item{background:var(--blue-50);color:var(--blue)}.architecture.resource .arch-item em{color:var(--blue-2)}
 
-/* ============================================================
-   模块功能详解
-   ============================================================ */
-.phase-block{margin-bottom:34px}
-.phase-block > .pb-title{font-size:19px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--blue),#0E5FD6);display:inline-block;padding:8px 22px;border-radius:10px;margin-bottom:18px}
-.layer-tag{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.5px;margin:0 0 14px;display:flex;align-items:center;gap:8px}
-.layer-tag::before{content:"";width:18px;height:2px;background:var(--blue)}
-.mod-card .mod-name{font-size:15.5px;font-weight:700;color:var(--blue-deep);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.mod-card .mod-name .mi{width:24px;height:24px;border-radius:7px;background:var(--blue);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
-.mod-card .mlab{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
-.mod-card .mtext{font-size:13.5px;color:var(--ink);margin-bottom:10px}
-.mod-card .mtext:last-child{margin-bottom:0}
-.mod-card .mtext b{color:var(--blue-deep)}
-.feat-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:0}
-.feat-chips span{background:var(--blue-50);color:var(--blue-deep);font-size:12.5px;padding:5px 11px;border-radius:8px}
+.agent-summary{display:flex;align-items:center;gap:18px;margin-bottom:18px;padding:17px 20px;border-radius:11px;background:var(--navy);color:#fff}.agent-summary strong{font-size:16px}.agent-summary span{color:#AFC5DF;font-size:12px}
+.agent-card{min-height:220px}.agent-card h3{font-size:17px}.agent-card .value{min-height:64px}.agent-card.featured{border-color:#BBD4EF;background:linear-gradient(160deg,#fff,var(--blue-50))}.agent-card.featured .ask{margin-top:13px;padding:10px;border:1px dashed #AFCBE9;border-radius:8px;background:#fff;color:#355372;font-size:11.5px}.agent-card.featured .ask b{color:var(--blue)}
 
-/* ============================================================
-   时间节点：横向可滑动周列（细颗粒度任务 + 完成状态）
-   ============================================================ */
-.tl-phase{margin-bottom:32px}
-.tl-phase-h{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;color:var(--blue-deep);margin-bottom:14px}
-.tl-phase-h .vtag{color:#fff;background:var(--blue);font-size:12px;padding:3px 12px;border-radius:7px}
-.tl-phase-h .swipe-hint{margin-left:auto;font-size:11.5px;font-weight:600;color:var(--blue-2);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.toolbar-showcase{padding:24px;border-radius:14px;background:var(--navy);color:#fff;box-shadow:var(--shadow)}.toolbar-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)}.toolbar-title strong{display:block;font-size:18px}.toolbar-title span{display:block;margin-top:4px;color:#AFC5DF;font-size:12px}.toolbar-scope{white-space:nowrap;padding:6px 11px;border-radius:999px;background:var(--blue-2);font-size:10.5px;font-weight:800}.tool-group{margin-top:18px}.tool-label{margin-bottom:9px;color:#7FA5D1;font-size:10px;font-weight:800;letter-spacing:1px}.tools{display:grid;gap:9px}.tool-grid.business{grid-template-columns:repeat(5,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:repeat(2,minmax(0,1fr))}.tool{display:flex;align-items:center;gap:10px;min-height:58px;padding:12px 14px;border-radius:9px;background:rgba(255,255,255,.08);font-size:12px;font-weight:600}.tool i{width:28px;height:28px;flex:none;border-radius:7px;display:flex;align-items:center;justify-content:center;background:rgba(46,123,214,.65);font-style:normal;font-size:11px}.tool.ai{background:rgba(0,163,180,.16);border:1px solid rgba(77,205,219,.22)}
 
-/* 横向滚动容器 + 自定义滚动条 */
-.tl-scroll{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;scroll-snap-type:x proximity;scrollbar-color:var(--blue) var(--blue-50);scrollbar-width:thin}
-.tl-scroll::-webkit-scrollbar{height:10px}
-.tl-scroll::-webkit-scrollbar-track{background:var(--blue-50);border-radius:999px}
-.tl-scroll::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--blue),var(--blue-2));border-radius:999px;border:2px solid var(--blue-50)}
-.tl-scroll::-webkit-scrollbar-thumb:hover{background:var(--blue)}
+.entry-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.entry-step{position:relative;padding:18px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:center}.entry-step:not(:last-child):after{content:"→";position:absolute;right:-13px;top:42%;z-index:2;color:var(--blue-2);font-weight:800}.entry-step strong{display:block;color:var(--navy);font-size:12.5px}.entry-step span{display:block;margin-top:5px;color:var(--gray);font-size:10.5px}.boundary{margin-top:18px;padding:15px 18px;border-radius:10px;background:#FFF8ED;border:1px solid #F5D9AA;color:#855919;font-size:12.5px}
 
-/* 周列卡片 */
-.tl-week{flex:0 0 234px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
-.tl-week .wk-h{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--bg-soft)}
-.tl-week .wk-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:none;box-shadow:0 0 0 3px rgba(27,122,255,.15)}
-.tl-week .wk-when{font-size:13.5px;font-weight:800;color:var(--blue-deep);line-height:1.2}
-.tl-week .wk-body{padding:4px 14px 12px;flex:1;display:flex;flex-direction:column}
-.tl-week .wk-foot{margin-top:auto;padding:10px 0 6px;border-top:1px dashed var(--line);text-align:center}
-.tl-link-gos{display:inline-block;font-size:13px;font-weight:700;font-family:var(--font);color:var(--blue);text-decoration:none;border-radius:6px;padding:4px 8px;transition:color .15s,background .15s}
-.tl-link-gos:hover{color:var(--blue-deep);text-decoration:underline;background:var(--blue-50)}
-.tl-link-gos:active,.tl-link-gos:focus-visible{color:#fff;background:var(--blue);text-decoration:none;outline:none}
+.role-card{min-height:220px}.role-card ul{margin:13px 0 0 17px;color:#4B5A6E;font-size:12.5px}.role-card li{margin:5px 0}
 
-/* 任务行 + 完成状态 */
-.tl-task{display:flex;align-items:flex-start;gap:9px;padding:9px 0;font-size:12.8px;line-height:1.5;color:var(--ink)}
-.tl-task + .tl-task{border-top:1px solid var(--bg-soft)}
-.st{flex:none;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
-.st.done{background:var(--green);color:#fff}
-.st.doing{background:var(--blue);color:#fff;box-shadow:0 0 0 3px rgba(27,122,255,.18)}
-.st.todo{background:#fff;border:2px solid var(--line)}
-.tl-task.done .tx{color:var(--gray)}
-.tl-task.doing .tx{font-weight:700;color:var(--blue-deep)}
-.tl-task .tx strong{color:var(--blue-deep);font-weight:800}
-.tl-tbd{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gray);font-size:13.5px;border:1.5px dashed var(--line);border-radius:12px;padding:26px;background:#fff}
 
-/* ============================================================
-   风险表（逐期）
-   ============================================================ */
-.risk-phase{margin-bottom:26px}
-.risk-phase .rp-h{font-size:16px;font-weight:800;color:var(--blue-deep);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.risk-phase .rp-h .vtag{background:var(--blue);color:#fff;font-size:12px;padding:3px 12px;border-radius:7px}
-.risk-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.risk-table th{background:var(--blue-deep);color:#fff;font-size:13px;font-weight:600;text-align:left;padding:12px 16px}
-.risk-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid var(--line);vertical-align:top}
-.risk-table tr:nth-child(even) td{background:var(--bg-soft)}
-.risk-table tr:last-child td{border-bottom:none}
-.risk-table .rk{font-weight:600;color:var(--blue-deep);width:30%}
-.lvl{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
-.lvl.low{background:#E7F8F0;color:#0A8C57}
-.lvl.mid{background:#FEF3E2;color:#B9770E}
-.foot-note{text-align:center;color:var(--gray);font-size:12px;padding:30px 0 50px}
+.timeline-scroll-hint{margin:-8px 0 14px;text-align:right;color:#5B95FF;font-size:11px;font-weight:800}.week-timeline{display:flex;gap:18px;overflow-x:auto;padding:2px 2px 18px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--blue-2) #E8F1FF}.week-timeline::-webkit-scrollbar{height:10px}.week-timeline::-webkit-scrollbar-track{border-radius:999px;background:#E8F1FF}.week-timeline::-webkit-scrollbar-thumb{border-radius:999px;background:var(--blue-2)}.week-card{display:flex;flex:0 0 310px;min-height:270px;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(15,39,71,.06);scroll-snap-align:start}.week-card-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);background:#F6F9FD;color:var(--navy);font-size:18px;font-weight:800}.week-dot{width:14px;height:14px;flex:none;border-radius:50%;background:#2F83F7;box-shadow:0 0 0 5px #DCEAFF}.week-list{flex:1;margin:0;padding:8px 22px 24px;list-style:none}.week-item{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;padding:16px 0;border-bottom:1px solid #EDF2F7;color:var(--navy);font-size:13px;font-weight:700;line-height:1.55}.week-item:last-child{border-bottom:0}.week-item.done{color:#748091;font-weight:500}.week-status{display:flex;width:22px;height:22px;align-items:center;justify-content:center;margin-top:1px;border:2px solid #DFE6EF;border-radius:50%;color:#fff;font-size:13px;font-weight:900}.week-status.done{border-color:#15B884;background:#15B884}.week-card-link{display:block;margin:0 22px 20px;padding-top:14px;border-top:1px dashed #D9E3EF;color:var(--blue);text-align:center;font-size:13px;font-weight:800;text-decoration:none}.week-card-link:hover{text-decoration:underline}
 
-/* ============================================================
-   响应式
-   ============================================================ */
-@media (max-width:1200px){
-  section{padding:56px 36px}
-  .sb-wrap,.tl-bars{grid-template-columns:1fr}
-  #cover h1{font-size:44px}
-}
-@media (max-width:900px){
-  :root{--nav-w:0px}
-  #sidenav{display:none}
-  main{margin-left:0}
-  .g3,.g2{grid-template-columns:1fr}
-}
+.future-card{min-height:200px;border-style:dashed}.future-card .version{display:inline-block;margin-bottom:12px;padding:5px 10px;border-radius:7px;background:var(--navy);color:#fff;font-size:11px;font-weight:800}.future-card h3{font-size:18px}.future-card .placeholder{display:inline-block;margin-top:16px;color:var(--blue);font-size:11px;font-weight:800}.foot-note{text-align:center;margin-top:36px;color:var(--muted);font-size:11px}
 
-/* ============================================================
-   打印 / 导出 PDF —— A4 横向；Tab/侧边栏 全部展开
-   ============================================================ */
-@media print{
-  @page{size:A4 landscape;margin:12mm}
-  body{background:#fff}
-  #progress-bar,#sidenav,.print-btn,.tabs{display:none!important}
-  main{margin-left:0}
-  section{padding:18px 6px;max-width:100%;page-break-after:always;break-after:page}
-  section:last-child{page-break-after:auto}
-  #cover{min-height:auto;padding:40px;page-break-after:always}
-  #cover .grid-deco{display:none}
-  .card,.sb,.risk-table,.mod-card,.ov-table{box-shadow:none!important}
-  .tab-panel{display:block!important;page-break-inside:avoid;break-inside:avoid;margin-bottom:18px}
-  .ov-print-title{display:block!important}
-  .sb-children{display:block!important}
-  .sb-item .chev{display:none}
-  .phase-block{page-break-inside:avoid;break-inside:avoid}
-  .tl-scroll{flex-wrap:wrap;overflow:visible!important}
-  .tl-week{flex:0 0 auto;width:230px;page-break-inside:avoid;break-inside:avoid}
-  .tl-phase-h .swipe-hint{display:none}
-  a[href]{color:inherit;text-decoration:none}
-}
+@media(max-width:1150px){section{padding:58px 34px}.g4{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(4,1fr)}.flow-node:not(:last-child):after{display:none}.tool-grid.business{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){:root{--nav-w:0px}#sidenav{display:none}main{margin-left:0}.g2,.g3,.g4,.overview-main{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.tool-grid.business{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:1fr}.entry-flow{grid-template-columns:1fr}.entry-step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-18px}.cover-inner h1{font-size:42px}.cover-inner h1 .sub{font-size:24px}.week-card{flex-basis:280px}}
+@media print{@page{size:A4 landscape;margin:10mm}body{background:#fff}#progress-bar,#sidenav,.print-btn{display:none!important}main{margin-left:0}section{padding:18px 4px;max-width:100%;page-break-after:always;break-after:page}section:last-child{page-break-after:auto}#cover{min-height:auto;padding:55px}.card,.toolbar-showcase,.week-card{box-shadow:none}.timeline-scroll-hint{display:none}.week-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;overflow:visible;padding-bottom:0}.week-card{min-width:0;min-height:0}.week-card-head{padding:10px;font-size:12px}.week-list{padding:4px 10px 10px}.week-item{grid-template-columns:18px 1fr;gap:6px;padding:8px 0;font-size:8.5px}.week-status{width:16px;height:16px;font-size:9px}a{color:inherit;text-decoration:none}}
 </style>
 </head>
 <body>
-
 <div id="progress-bar"></div>
-
-<!-- ========================= 左侧固定导航 ========================= -->
 <aside id="sidenav">
-  <div class="brand">G-Builder OS<small>三期迭代计划 · Roadmap</small></div>
+  <div class="brand">G-Builder OS<small>V1.0 项目规划与进度</small></div>
   <nav id="nav">
-    <a href="#cover"><span class="num">Day 1</span></a>
+    <a href="#cover"><span class="num">00</span>项目封面</a>
     <a href="#bg"><span class="num">01</span>背景与目标</a>
-    <a href="#overview"><span class="num">02</span>三期规划总览</a>
-    <a href="#sidebars"><span class="num">03</span>侧边栏设计</a>
-    <a href="#modules"><span class="num">04</span>各模块功能详解</a>
-    <a href="#timeline"><span class="num">05</span>时间节点</a>
-    <a href="#risk"><span class="num">06</span>风险与依赖</a>
+    <a href="#flow"><span class="num">02</span>业务闭环</a>
+    <a href="#overview"><span class="num">03</span>能力全景</a>
+    <a href="#agent"><span class="num">04</span>AI 能力</a>
+    <a href="#scrm"><span class="num">05</span>SCRM 工具栏</a>
+    <a href="#integration"><span class="num">06</span>CRM / ERP 入口</a>
+    <a href="#workbench"><span class="num">07</span>角色工作台</a>
+    <a href="#timeline"><span class="num">08</span>时间轴</a>
+    <a href="#future"><span class="num">09</span>后续方向</a>
   </nav>
-  <button class="print-btn" onclick="window.print()">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-    打印 / 导出 PDF
-  </button>
+  <button class="print-btn" onclick="window.print()">打印 / 导出 PDF</button>
   <div class="nav-foot">敬城国际 · 服务 GEORGE &amp; OKBuild</div>
 </aside>
 
 <main>
-
-<!-- ========================= Day 1 · 封面 ========================= -->
 <section id="cover">
-  <div class="grid-deco"></div>
-  <div class="inner">
-    <div class="eyebrow">DAY 1</div>
-    <h1>
-      <span class="l1">G-Builder OS</span>
-      <span class="l2">三期迭代计划</span>
-    </h1>
+  <div class="cover-inner">
+    <div class="eyebrow">G-BUILDER OS · V1.0</div>
+    <h1><span>营销 OS</span><span class="sub">项目规划与进度汇报</span></h1>
+    <p class="cover-desc">围绕“营销获客—询盘承接—销售跟进—报价推进”建立 V1.0 最小经营闭环。</p>
   </div>
-  <div class="foot">敬城国际 · 服务 GEORGE &amp; OKBuild</div>
+  <div class="cover-foot">敬城国际 · 服务 GEORGE &amp; OKBuild</div>
 </section>
 
-<!-- ========================= 1. 背景与目标（无标题） ========================= -->
 <section id="bg">
-  <div class="sec-head">
-    <span class="sec-tag">Background &amp; Goal</span>
-    <h2 class="sec-title">背景与目标</h2>
-    <p class="sec-sub" style="font-size:16px;color:var(--ink);margin-top:10px">
-      G-Builder OS 是面向出海泛家居整装行业的一站式经营操作系统，分三期落地，每一期规划都明确面向的场景：<b>V1.0 面向一线销售的售前询盘与售中跟进场景；V2.0 面向营销获客与项目全周期交付场景；V3.0 面向集团经营决策与经验资产化、培训赋能场景。</b>
-    </p>
+  <div class="sec-head"><span class="sec-tag">Background & Goal</span><h2 class="sec-title">项目背景与 V1.0 目标</h2></div>
+  <div class="grid g3">
+    <div class="card goal-card"><div class="ico">01</div><h3>从单点工具走向业务闭环</h3><p>SCRM、Agent、工作台和外部系统入口不再分别规划，而是围绕同一客户与项目上下文协同。</p></div>
+    <div class="card goal-card"><div class="ico">02</div><h3>让 AI 能力可被明确感知</h3><p>形成 4 个 AI 能力与 4 个清晰的一级入口；AI 问答作为 AI 销冠的内置交互能力，不单独形成模块。</p></div>
+    <div class="card goal-card"><div class="ico">03</div><h3>多角色工作台</h3><p>工作台聚焦摘要、待办、提醒与快捷入口，不在 V1.0 建设重型数据大屏。</p></div>
   </div>
+  <div class="callout" style="margin-top:18px"><b>V1.0 定位：</b>面向投放运营、销售 PM 和部门管理者，建设从营销内容到销售承接、报价辅助与业务录入的一体化营销操作系统。</div>
+</section>
 
-  <!-- 两张原则卡：场景角色驱动（左）· 业务闭环（右） -->
-  <div class="grid g2">
-    <div class="card principle">
-      <div class="pico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B7AFF" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
-      <h3>场景角色驱动</h3><p>系统主线始终面向场景、面向角色解决问题。</p>
-    </div>
-    <div class="card principle">
-      <div class="pico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B7AFF" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.2-8.5"/><polyline points="21 4 21 9 16 9"/></svg></div>
-      <h3>业务闭环</h3><p>每一期都能独立跑通一段真实业务，不做半截功能。</p>
-    </div>
+<section id="flow">
+  <div class="sec-head"><span class="sec-tag">Business Loop</span><h2 class="sec-title">V1.0 业务闭环</h2><p class="sec-sub">每个节点都承接上一步的业务上下文</p></div>
+  <div class="flow">
+    <div class="flow-node"><div class="n">01</div><b>AI 营销</b><small>生成营销内容与可复用素材</small></div>
+    <div class="flow-node"><div class="n">02</div><b>SCRM 承接</b><small>统一接入和承载客户会话</small></div>
+    <div class="flow-node"><div class="n">03</div><b>AI 业务员</b><small>接待、收集、评级与转人工</small></div>
+    <div class="flow-node"><div class="n">04</div><b>人工确认录入</b><small>客户、项目、跟进信息写入</small></div>
+    <div class="flow-node"><div class="n">05</div><b>AI 销冠</b><small>提问、分析、判断与行动建议</small></div>
+    <div class="flow-node"><div class="n">06</div><b>AI 报价</b><small>提取需求并生成报价草稿</small></div>
+    <div class="flow-node"><div class="n">07</div><b>角色工作台</b><small>汇总任务、进展与风险提醒</small></div>
   </div>
 </section>
 
-<!-- ========================= 2. 三期规划总览（融合：每期重点 + 总览 + 角色场景） ========================= -->
 <section id="overview">
-  <div class="sec-head">
-    <span class="sec-tag">Three-Phase Plan</span>
-    <h2 class="sec-title">三期规划总览</h2>
-  </div>
-  <div id="ovSec">
-    <div class="tabs" id="ovTabs">
-      <button class="tab-btn active" data-tab="v1">V1.0</button>
-      <button class="tab-btn" data-tab="v2">V2.0</button>
-      <button class="tab-btn" data-tab="v3">V3.0</button>
+  <div class="sec-head"><span class="sec-tag">Capability Landscape</span><h2 class="sec-title">V1.0 能力全景</h2><p class="sec-sub">以平台底座和公共资源为横向支撑，以四组业务能力组成 V1.0 范围。</p></div>
+  <div class="overview-main">
+    <div class="overview-stack">
+      <div class="overview-row"><b>Agent 能力</b><span>AI 业务员、AI 销冠、AI 报价、AI 营销；自由提问、连续追问和知识检索融入 AI 销冠。</span></div>
+      <div class="overview-row"><b>SCRM 工具栏</b><span>客户管理、公海管理、翻译、会话管理、营销资料五项业务工具，以及 AI 销冠与 AI 报价两个 AI 工具入口。</span></div>
+      <div class="overview-row"><b>业务入口</b><span>从会话提取客户、项目和跟进信息，预填后由员工确认录入 CRM 或 ERP。</span></div>
+      <div class="overview-row"><b>角色工作台</b><span>投放运营、销售 PM、部门管理三类人群工作台及看板</span></div>
     </div>
-    <div id="ovPanels"><!-- JS 渲染 --></div>
-  </div>
-</section>
-
-<!-- ========================= 3. 侧边栏设计 ========================= -->
-<section id="sidebars">
-  <div class="sec-head">
-    <span class="sec-tag">Sidebar Evolution</span>
-    <h2 class="sec-title">侧边栏设计</h2>
-    <div class="sb-legend">
-      <span><span class="chip-new">新</span> 新增标项</span>
-      <span><span class="chip-up">升级</span> 升级标项</span>
-    </div>
-  </div>
-
-  <div class="sb-wrap" id="sbWrap">
-
-    <!-- V1.0 -->
-    <div class="sb">
-      <div class="sb-top"><div class="logo">G</div><div><div class="pname">G-Builder OS</div>      <div class="pver">V1.0 · 销售一线</div></div></div>
-      <div class="sb-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>搜索菜单</div>
-      <div class="sb-list">
-        <div class="sb-group">主导航</div>
-        <div class="sb-node"><div class="sb-item sel"><span class="ic">▦</span><span class="lbl">工作台</span></div></div>
-        <div class="sb-node"><div class="sb-item expandable open"><span class="ic">▤</span><span class="lbl">SCRM 销售工作台</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">客户档案</div><div class="sb-child">快捷回复</div><div class="sb-child">翻译</div><div class="sb-child">自动化</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">◇</span><span class="lbl">会话管理</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">线索分配</div><div class="sb-child">转人工</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">✦</span><span class="lbl">Agent</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">AI 业务员</div><div class="sb-child">AI 销冠</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">◈</span><span class="lbl">数字资产</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">知识库</div></div></div>
-        <div class="sb-group">系统</div>
-        <div class="sb-node"><div class="sb-item"><span class="ic">⚙</span><span class="lbl">设置</span></div></div>
-      </div>
-    </div>
-
-    <!-- V2.0（累计 V1 + 新增） -->
-    <div class="sb">
-      <div class="sb-top"><div class="logo">G</div><div><div class="pname">G-Builder OS</div><div class="pver">V2.0 · 获客 + 交付</div></div></div>
-      <div class="sb-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>搜索菜单</div>
-      <div class="sb-list">
-        <div class="sb-group">主导航</div>
-        <div class="sb-node"><div class="sb-item"><span class="ic">▦</span><span class="lbl">工作台</span></div></div>
-        <div class="sb-node"><div class="sb-item sel has-dot"><span class="ic">★</span><span class="lbl">营销工作室 <span class="chip-new">新</span></span></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">▤</span><span class="lbl">SCRM 销售工作台</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">客户档案</div><div class="sb-child">快捷回复</div><div class="sb-child">翻译</div><div class="sb-child">自动化</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">◇</span><span class="lbl">会话管理</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">线索分配</div><div class="sb-child">转人工</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">✦</span><span class="lbl">Agent</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">AI 业务员</div><div class="sb-child">AI 销冠</div></div></div>
-        <div class="sb-group">数据</div>
-        <div class="sb-node"><div class="sb-item expandable open has-dot"><span class="ic">▥</span><span class="lbl">数据大屏 <span class="chip-new">新</span></span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">运营看板</div><div class="sb-child">PM 看板</div><div class="sb-child">部门看板</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">◈</span><span class="lbl">数字资产</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">知识库</div></div></div>
-        <div class="sb-group">系统</div>
-        <div class="sb-node"><div class="sb-item"><span class="ic">⚙</span><span class="lbl">设置</span></div></div>
-      </div>
-    </div>
-
-    <!-- V3.0（累计 V2 + 新增） -->
-    <div class="sb">
-      <div class="sb-top"><div class="logo">G</div><div><div class="pname">G-Builder OS</div><div class="pver">V3.0 · 集团经营</div></div></div>
-      <div class="sb-search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>搜索菜单</div>
-      <div class="sb-list">
-        <div class="sb-group">主导航</div>
-        <div class="sb-node"><div class="sb-item"><span class="ic">▦</span><span class="lbl">工作台</span></div></div>
-        <div class="sb-node"><div class="sb-item"><span class="ic">★</span><span class="lbl">营销工作室</span></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">▤</span><span class="lbl">SCRM 销售工作台</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">客户档案</div><div class="sb-child">快捷回复</div><div class="sb-child">翻译</div><div class="sb-child">自动化</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">◇</span><span class="lbl">会话管理</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">线索分配</div><div class="sb-child">转人工</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable"><span class="ic">✦</span><span class="lbl">Agent</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">AI 业务员</div><div class="sb-child">AI 销冠</div></div></div>
-        <div class="sb-group">数据</div>
-        <div class="sb-node"><div class="sb-item expandable open has-dot"><span class="ic">▥</span><span class="lbl">数据大屏</span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">运营看板</div><div class="sb-child">PM 看板</div><div class="sb-child">部门看板</div><div class="sb-child">CEO 驾驶舱 <span class="chip-new">新</span></div></div></div>
-        <div class="sb-group">经营 / 资产</div>
-        <div class="sb-node"><div class="sb-item expandable open has-dot"><span class="ic">◈</span><span class="lbl">数字资产 <span class="chip-up">升级</span></span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">知识库</div><div class="sb-child">Skills 广场</div><div class="sb-child">Token</div></div></div>
-        <div class="sb-node"><div class="sb-item expandable has-dot"><span class="ic">◎</span><span class="lbl">培训实战 <span class="chip-new">新</span></span><span class="chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span></div>
-          <div class="sb-children"><div class="sb-child">案例分享</div><div class="sb-child">多模态培训</div></div></div>
-        <div class="sb-group">系统</div>
-        <div class="sb-node"><div class="sb-item"><span class="ic">⚙</span><span class="lbl">设置</span></div></div>
-      </div>
-    </div>
-
-  </div>
-  <p class="sb-note">导航从「一条销售一线」长成「营销→销售→项目全链路 + 数据大屏」，再长成「带 CEO 经营、资产化与培训的完整 OS」。</p>
-</section>
-
-<!-- ========================= 4. 各模块功能详解 ========================= -->
-<section id="modules">
-  <div class="sec-head">
-    <span class="sec-tag">Module Functions</span>
-    <h2 class="sec-title">各模块功能详解</h2>
-  </div>
-
-  <!-- ===== V0.0 系统底盘（与下方同底色，不反色） ===== -->
-  <div class="phase-block">
-    <div class="pb-title">V0.0 · 平台基础框架（系统底盘）</div>
-    <div class="card mod-card">
-      <div class="layer-tag">平台基础框架</div>
-      <div class="mod-name">系统底盘（设置 / 企业中心）</div>
-      <div class="mlab">功能</div>
-      <div class="feat-chips">
-        <span>个人中心（个人信息 / 修改密码 / 切换组织）</span>
-        <span>多租户架构（账号可属多企业）</span>
-        <span>产品中心（企业信息架构 / 开通模块 / 模块参数 / 模型 API 对接）</span>
-        <span>费用中心（购买服务 / 订单管理 / 账单总览：金额消耗 + Token 消耗）</span>
-        <span>组织架构（部门与用户：内部同步 auth+定时分配角色 / 外部手动搭建；角色=权限组：模块权限+数据权限；同步日志）</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== V1.0 一线销售最小业务闭环 ===== -->
-  <div class="phase-block">
-    <div class="pb-title">V1.0 · 一线销售最小业务闭环</div>
-    <div class="layer-tag">业务能力层 · 系统主线 · 面向角色</div>
-    <div class="grid" style="gap:14px">
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">1</span>售前询盘 · PM 助理接管线索全流程</div>
-        <div class="mlab">功能</div>
-        <div class="feat-chips">
-          <span>工作台（核心数据 / 线索漏斗 / 线索分配 / 转人工+预警）</span>
-          <span>SCRM 渠道绑定（WhatsApp）+ 会话窗口</span>
-          <span>AI 业务员（目标管理 / 意图管理 / 转人工配置 / 3 秒首响 / 6 维收集 / 派单建议）</span>
-          <span>会话管理（线索分配 / 转人工 / 线索转派）</span>
+    <div class="architecture-stack">
+      <div class="architecture">
+        <h3>平台底座</h3><p>承载系统运行、账号体系与渠道账号接入。</p>
+        <div class="arch-list">
+          <div class="arch-item"><span>系统框架</span><em>基础架构</em></div>
+          <div class="arch-item"><span>账号与角色</span><em>权限体系</em></div>
+          <div class="arch-item"><span>云账号管理</span><em>IM资源管理</em></div>
         </div>
       </div>
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">2</span>售中接待 · PM 工作台 + AI 销冠辅助</div>
-        <div class="mlab">功能</div>
-        <div class="feat-chips">
-          <span>SCRM 销售工作台功能板（客户档案 / 线索转派 / 项目管理 / 翻译设置 / 快捷回复 / 自动化）</span>
-          <span>AI 销冠：数据集 + 能力点（AI 标签 / AI 托管 / 主题分析[结合预设项目阶段] / AI 总结 / 行动建议[自动化任务推送 todo]）</span>
-          <span>拓展能力（提取话题 / 生成思维导图 / 基于销冠经验分析业务卡点）</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== V2.0 营销获客 + 全周期交付（竖向排列） ===== -->
-  <div class="phase-block">
-    <div class="pb-title">V2.0 · 营销获客 + 全交付周期</div>
-    <div class="grid" style="gap:14px">
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">·</span>营销工作室 · 获客内容流水线</div>
-        <div class="feat-chips">
-          <span>市场咨询</span><span>灵感发现</span><span>脚本仿写</span><span>素材调用</span><span>黄金组件</span>
-        </div>
-      </div>
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">·</span>数据大屏 · 运营 / 项目 / 部门 + 复盘沉淀</div>
-        <div class="mtext"><b>运营看板（投手驾驶舱）：</b>流量监控 / ROI 转化 / 素材监控 / 转化漏斗。</div>
-        <div class="mtext"><b>PM 看板：</b>项目总览 / 卡点诊断·推进。</div>
-        <div class="mtext"><b>部门看板：</b>项目维度进展分析 / PM 维度进展分析 / 部门内排行（人员战力图）。</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== V3.0 集团经营家：数字资产化（竖向排列） ===== -->
-  <div class="phase-block">
-    <div class="pb-title">V3.0 · 集团经营资产数字化</div>
-    <div class="grid" style="gap:14px">
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">·</span>CEO 驾驶舱 · 集团经营决策</div>
-        <div class="feat-chips">
-          <span>创客级营收贡献与产出转化效率</span><span>营收结构与增速分析</span><span>客户增长趋势与品类市场需求趋势</span><span>客情变化与市场变化</span>
-        </div>
-      </div>
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">·</span>数字资产 · Skill 资产化 + Token 激励</div>
-        <div class="feat-chips">
-          <span>制作各类场景 Skill 应用到 Agent</span><span>他人调用 Skill 获 Token 代币奖励</span><span>Skills 广场（应用到 Agent）</span>
-        </div>
-      </div>
-      <div class="card mod-card">
-        <div class="mod-name"><span class="mi">·</span>培训实战 · 案例飞轮 + 多模态赋能</div>
-        <div class="feat-chips">
-          <span>案例分享（正向 / 流失 / 分享课程）</span><span>多模态培训（对话式 / 实景 / 对外赋能课程）</span>
+      <div class="architecture resource">
+        <h3>公共资源</h3><p>为业务和 AI 能力提供统一知识来源。</p>
+        <div class="arch-list">
+          <div class="arch-item"><span>知识库</span><em>公共资源</em></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========================= 5. 时间节点（占位） ========================= -->
+<section id="agent">
+  <div class="sec-head"><span class="sec-tag">AI Capability</span><h2 class="sec-title">五项AI能力，五个一级入口</h2><p class="sec-sub">AI 前期作为独立菜单，后期融入AI销冠中。</p></div>
+  <div class="agent-summary"><div><strong>AGENT 信息架构</strong><br><span>AI 业务员 · AI 销冠 · AI 报价 · AI 营销</span></div></div>
+  <div class="grid g4">
+    <div class="card agent-card"><h3>AI 业务员</h3><p class="value">面向售前询盘，完成自动接待、信息收集、意向评级和转人工衔接。</p><div class="chips"><span class="chip blue">询盘接待</span><span class="chip">线索评级</span><span class="chip">转人工</span></div></div>
+    <div class="card agent-card featured"><h3>AI 销冠</h3><p class="value">围绕当前会话、客户档案和知识库直接提问，获得总结、判断、建议与业务分析。</p><div class="ask"><b>内置问答能力：</b>自由提问 · 连续追问 · 推荐问题 · 知识检索</div></div>
+    <div class="card agent-card"><h3>AI 报价</h3><p class="value">提取客户需求，形成报价分析与报价草稿，并保留人工确认节点。</p><div class="chips"><span class="chip blue">需求提取</span><span class="chip">报价草稿</span><span class="chip">人工确认</span></div></div>
+    <div class="card agent-card"><h3>AI 营销</h3><p class="value">承接原 V2.0 营销能力，覆盖市场咨询、灵感、脚本与素材组合。</p><div class="chips"><span class="chip blue">市场咨询</span><span class="chip">脚本</span><span class="chip">黄金组件</span></div></div>
+  </div>
+</section>
+
+<section id="scrm">
+  <div class="sec-head"><span class="sec-tag">SCRM Toolbar</span><h2 class="sec-title">SCRM 业务工具栏</h2><p class="sec-sub">集中呈现销售使用场景中的业务工具与 AI 能力入口。</p></div>
+  <div class="toolbar-showcase">
+    <div class="toolbar-head">
+      <div class="toolbar-title"><strong>工具栏能力</strong><span>从工作界面直接调用常用业务工具与 AI 辅助能力</span></div>
+      <span class="toolbar-scope">V1.0 范围</span>
+    </div>
+    <div class="tool-group"><div class="tool-label">业务工具层</div><div class="tools tool-grid business">
+        <div class="tool"><i>客</i>客户管理</div><div class="tool"><i>公</i>公海管理</div><div class="tool"><i>译</i>翻译</div><div class="tool"><i>会</i>会话管理</div><div class="tool"><i>资</i>营销资料</div>
+      </div></div>
+    <div class="tool-group"><div class="tool-label">AI 工具层</div><div class="tools tool-grid ai">
+        <div class="tool ai"><i>冠</i>AI 销冠 · 当前会话分析</div><div class="tool ai"><i>价</i>AI 报价 · 携带会话上下文</div>
+      </div></div>
+  </div>
+</section>
+
+<section id="integration">
+  <div class="sec-head"><span class="sec-tag">Business Entry Tools</span><h2 class="sec-title">CRM / ERP 入口工具</h2><p class="sec-sub">定位为“会话到业务系统的快捷录入”，不在 GOS 内重建 CRM 或 ERP。</p></div>
+  <div class="entry-flow">
+    <div class="entry-step"><strong>选择会话</strong><span>继承当前客户与项目上下文</span></div>
+    <div class="entry-step"><strong>信息提取</strong><span>识别客户、项目和跟进要点</span></div>
+    <div class="entry-step"><strong>内容预填</strong><span>形成可编辑的录入草稿</span></div>
+    <div class="entry-step"><strong>人工确认</strong><span>员工校正并确认关键内容</span></div>
+    <div class="entry-step"><strong>录入 / 跳转</strong><span>进入 CRM 或 ERP 对应入口</span></div>
+  </div>
+  <div class="boundary"><b>明确边界：</b>不自动修改客户归属、价格、库存和订单；不执行无人确认写入；不深度参与 CRM / ERP 内部业务流程。</div>
+</section>
+
+<section id="workbench">
+  <div class="sec-head"><span class="sec-tag">Role Workbench</span><h2 class="sec-title">三类轻量角色工作台</h2><p class="sec-sub">统一使用“工作台”入口，根据角色权限呈现不同摘要、待办、提醒和业务入口。</p></div>
+  <div class="grid g3">
+    <div class="card role-card"><div class="ico">投</div><h3>投放运营工作台</h3><ul><li>营销任务与内容进度</li><li>待审核素材与素材异常</li><li>线索反馈与投放概况</li><li>AI 营销快捷入口</li></ul></div>
+    <div class="card role-card"><div class="ico">销</div><h3>销售 PM 工作台</h3><ul><li>待接线索与重点会话</li><li>客户跟进与超时提醒</li><li>待报价事项与项目节点</li><li>AI 销冠、AI 报价入口</li></ul></div>
+    <div class="card role-card"><div class="ico">管</div><h3>部门管理工作台</h3><ul><li>团队任务与人员负载</li><li>客户和项目推进概况</li><li>重点风险与异常预警</li><li>部门范围业务入口</li></ul></div>
+  </div>
+</section>
+
 <section id="timeline">
-  <div class="sec-head">
-    <span class="sec-tag">Timeline</span>
-    <h2 class="sec-title">时间节点</h2>
-    <p class="sec-sub">按周拆分的细颗粒度任务节点；每个版本一条横向时间带，可在容器内左右滑动查看全部周节点。</p>
-  </div>
-
-  <!-- V1.0 时间带（横向可滑动） -->
-  <div class="tl-phase">
-    <div class="tl-phase-h"><span class="vtag">V1.0</span>一线销售最小业务闭环<span class="swipe-hint">← 横向滑动查看全部周节点 →</span></div>
-    <div class="tl-scroll">
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">5 月 · 第 4 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">完成 AI 业务员工程化迭代</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">完成营销 OS 平台整体规划定版</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">完成 SCRM 底层消息内核更换</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 1 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">客户端：SCRM 翻译能力上线</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">客户端：云账号登录+侧边栏优化</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 2 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">客户端：UI/UX 升级迭代启动</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">OS：三方接口提供</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">OS：IM开发启动</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">OS：系统基础架构建设启动</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 3 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">客户端：AI 业务员需求启动</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">定制二：下单图纸审单需求启动</span></div>
-          <div class="wk-foot">
-            <a class="tl-link-gos" href="https://bananaco123.github.io/GOS/home" target="_blank" rel="noopener noreferrer">GOS V1.0</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 4 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">客户端：新版客户端发布</span></div>
-          <div class="tl-task done"><span class="st done"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="tx">定制二：群聊知识库总结需求启动</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 1 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：AI销冠，线索询盘，知识库等完整1.0需求启动</span></div>
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">OS：V1.0提测</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 2 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">现场网络 / 跨境连接测试</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 3 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx"><strong>7/16 正式上线</strong></span></div>
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">上线后首周现场支持</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- V2.0 时间带（横向可滑动） -->
-  <div class="tl-phase">
-    <div class="tl-phase-h"><span class="vtag">V2.0</span>营销获客 + 全交付周期<span class="swipe-hint">← 横向滑动查看全部周节点 →</span></div>
-    <div class="tl-scroll">
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 3 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">确定 V2.0 规划</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">6 月 · 第 4 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">开启 V2.0 设计</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">7 月 · 第 4 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">完成 V2.0 设计需求定稿</span></div>
-        </div>
-      </div>
-
-      <div class="tl-week">
-        <div class="wk-h"><span class="wk-dot"></span><span class="wk-when">8 月 · 第 1 周</span></div>
-        <div class="wk-body">
-          <div class="tl-task todo"><span class="st todo"></span><span class="tx">开始 V2.0 功能开发</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- V3.0 时间带 -->
-  <div class="tl-phase">
-    <div class="tl-phase-h"><span class="vtag">V3.0</span>集团经营资产数字化</div>
-    <div class="tl-tbd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>整个阶段内容待定（TBD）</div>
+  <div class="sec-head"><span class="sec-tag">Project Timeline</span><h2 class="sec-title">项目时间轴</h2></div>
+  <div class="timeline-scroll-hint">← 横向滑动查看全部周节点 →</div>
+  <div class="week-timeline">
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第1周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：SCRM 翻译能力上线</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：云账号登录 + 侧边栏优化</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第2周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：UI/UX 升级迭代启动</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：三方接口提供</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：IM 开发启动</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：系统基础架构建设启动</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第3周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：AI 业务员需求启动</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：下单图纸审单需求启动</span></li>
+    </ul><a class="week-card-link" href="https://bananaco123.github.io/GOS/home" target="_blank" rel="noopener noreferrer">GOS V1.0</a></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第4周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：新版客户端发布</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：群聊知识库总结需求启动</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第1周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：问答智能体完成</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：询价智能体启动</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：AI 销冠、线索询盘、知识库等完整 1.0 需求启动</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第2周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：AI 业务员上线</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：询价智能体完成</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：审单智能体启动</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第3周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：询价 / 问答智能体优化</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：基础架构 / IM 提测</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第4周</div><ul class="week-list">
+      <li class="week-item"><span class="week-status"></span><span>OS：IM 完成测试</span></li>
+      <li class="week-item"><span class="week-status"></span><span>客户端：AI 业务员全面推广</span></li>
+      <li class="week-item"><span class="week-status"></span><span>客户端：数据看板、聊天监控上线</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第5周</div><ul class="week-list">
+      <li class="week-item"><span class="week-status"></span><span>OS：完成工具栏提测</span></li>
+      <li class="week-item"><span class="week-status"></span><span>OS：完成 IM 更多功能提测</span></li>
+    </ul></article>
   </div>
 </section>
 
-<!-- ========================= 6. 风险与依赖（逐期） ========================= -->
-<section id="risk">
-  <div class="sec-head">
-    <span class="sec-tag">Risks &amp; Dependencies</span>
-    <h2 class="sec-title">风险与依赖</h2>
+<section id="future">
+  <div class="sec-head"><span class="sec-tag">Future Direction</span><h2 class="sec-title">V2.0 / V3.0 方向占位</h2><p class="sec-sub">后续版本只保留方向，不在当前规划中设置范围明细和时间。</p></div>
+  <div class="grid g2">
+    <div class="card future-card"><span class="version">V2.0</span><h3>项目全周期深化</h3><p>围绕售前、售中、售后推进更完整的项目管理、业务自动化和高级分析能力。</p><span class="placeholder">方向保留 · 待重新规划</span></div>
+    <div class="card future-card"><span class="version">V3.0</span><h3>集团经营与经验资产化</h3><p>延续集团经营视角、经验资产、Skill 生态与培训赋能方向。</p><span class="placeholder">方向保留 · 待重新规划</span></div>
   </div>
-
-  <div class="risk-phase">
-    <div class="rp-h"><span class="vtag">V1.0</span>一线销售最小业务闭环</div>
-    <table class="risk-table">
-      <thead><tr><th style="width:30%">风险 / 依赖</th><th style="width:34%">影响</th><th>应对</th></tr></thead>
-      <tbody>
-        <tr><td class="rk">依赖 WhatsApp 三方集成 <span class="lvl low">依赖</span></td><td>SCRM 核心操作能力</td><td>接口沟通，逐个沟通提供中</td></tr>
-        <tr><td class="rk">AI 销冠会话分析 <span class="lvl mid">中</span></td><td>会话分析价值</td><td>需要大量真实语料训练校验分析价值</td></tr>
-        <tr><td class="rk">平台基础框架（多租户/权限/计费/模型 API）<span class="lvl mid">关键</span></td><td>基础建设稳定性和并发考验</td><td>作为 V0.0 独立模块优先排期，与业务并行，避免阻塞主线</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="risk-phase">
-    <div class="rp-h"><span class="vtag">V2.0</span>营销获客 + 全交付周期</div>
-    <table class="risk-table">
-      <thead><tr><th style="width:30%">风险 / 依赖</th><th style="width:34%">影响</th><th>应对</th></tr></thead>
-      <tbody>
-        <tr><td class="rk">多渠道营销数据接入（广告/素材/ROI 口径不一）<span class="lvl mid">中</span></td><td>指标失真</td><td>统一口径 + 归因模型</td></tr>
-        <tr><td class="rk">PM 全周期数据整合（售前+售中+售后跨源）<span class="lvl mid">中</span></td><td>数据打通难</td><td>依赖 V1 结构化数据 + ETL 治理</td></tr>
-        <tr><td class="rk">投手驾驶舱实时性 <span class="lvl mid">中</span></td><td>流量/素材监控延迟</td><td>事件总线 + 缓存策略</td></tr>
-        <tr><td class="rk">部门排行 / 人员战力图公平性 <span class="lvl mid">中</span></td><td>误导管理决策</td><td>多维度口径 + 可解释</td></tr>
-        <tr><td class="rk">角色权限边界（PM 全视角 vs 部门）<span class="lvl mid">中</span></td><td>越权风险</td><td>沿用 V1 权限组并细化数据权限</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="risk-phase">
-    <div class="rp-h"><span class="vtag">V3.0</span>集团经营资产数字化</div>
-    <table class="risk-table">
-      <thead><tr><th style="width:30%">风险 / 依赖</th><th style="width:34%">影响</th><th>应对</th></tr></thead>
-      <tbody>
-        <tr><td class="rk">Token 经济设计（分成 / 防刷 / 通胀）<span class="lvl mid">中</span></td><td>激励失衡</td><td>规则透明 + 风控机制</td></tr>
-        <tr><td class="rk">Skill 质量与复用安全 <span class="lvl mid">中</span></td><td>低质 Skill 扩散</td><td>评审 + 成熟度门槛 + 三级晋升</td></tr>
-        <tr><td class="rk">CEO 驾驶舱数据准确性 <span class="lvl mid">关键</span></td><td>战略误导</td><td>多源校验 + AI 结论可溯源</td></tr>
-        <tr><td class="rk">培训内容时效 <span class="lvl mid">中</span></td><td>内容过时</td><td>案例飞轮自动反哺更新</td></tr>
-        <tr><td class="rk">资产化跨部门利益 <span class="lvl mid">中</span></td><td>推行阻力</td><td>试点先行 + 激励前置</td></tr>
-        <tr><td class="rk">对外赋能课程 <span class="lvl mid">合规</span></td><td>合规与 IP</td><td>内容审核 + 法务把关</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="foot-note">G-Builder OS · 三期迭代计划 ｜ 敬城国际 · 服务 GEORGE &amp; OKBuild</div>
+  <div class="foot-note">G-Builder OS · V1.0 项目规划与进度 ｜ 敬城国际 · 服务 GEORGE &amp; OKBuild</div>
 </section>
-
 </main>
 
 <script>
-/* ============================================================
-   数据：三期规划总览（融合 总览 + 每期重点 + 角色场景视角）
-   说明：V1 的「看板」已全量并入 V2。
-   ============================================================ */
-var OVERVIEW = {
-  v1:{ name:"V1.0 · 销售一线", rows:[
-    ["面向角色","PM 助理 + PM"],
-    ["核心场景","售前筛选询盘 + 售中客户跟进"],
-    ["解决问题","询盘接待效率低；线索分配规则黑盒；售中环节缺乏跟进标准"],
-    ["角色赋能","<b>PM 助理</b>：由 AI 业务员 Agent 接管售前询盘，并在有监督的情况下执行线索分配；<b>PM</b>：由 AI 销冠辅助客户跟进"],
-    ["业务闭环","进线 → AI 接待 → 线索分配 → 转人工 → PM 售中（AI 销冠辅助）→ 知识 / 案例沉淀"],
-    ["核心模块","工作台 / SCRM / 会话管理 / AI 业务员 / AI 销冠 + 知识库设置"],
-    ["价值","<b>询盘自动响应</b>、<b>线索自动转派</b>、<b>AI 辅助售中接待</b>、<b>销冠经验可复制沉淀</b>"]
-  ]},
-  v2:{ name:"V2.0 · 获客 + 交付", rows:[
-    ["面向角色","运营投手 + PM + 部门主管"],
-    ["核心场景","素材投流 + 营销获客 + 项目全周期看板管理 + 部门看板管理"],
-    ["解决问题","投放效率和转化率不明确；项目复盘卡点梳理可视化；明确团队战力，实现资源最优解"],
-    ["角色赋能","<b>运营 / 投手</b> 营销获客 + 投手驾驶舱（流量 / ROI / 素材 / 漏斗）；<b>项目 PM</b> 升级为售前+售中+售后全周期；<b>部门主管</b> 部门项目看板 + 排行（人员战力图）"],
-    ["业务闭环","营销获客（市场咨询→灵感→脚本→素材→黄金组件）→ <b>投手数据驾驶舱</b> → <b>PM 全周期看板</b> → 部门项目看板与排行；从运营到承接，结合提成规则的全链路漏斗价值"],
-    ["核心模块","营销工作室 / 数据大屏（运营看板 · PM 项目管理 · 部门看板）"],
-    ["价值","<b>可复用的素材资源</b>、<b>清晰的 ROI 转化漏斗</b>、<b>项目卡点直观可诊断</b>、<b>个人 / 项目 / 部门能力可视化对比</b>"]
-  ]},
-  v3:{ name:"V3.0 · 集团经营", rows:[
-    ["面向角色","一号位 + 金牌销售 + 新人销售"],
-    ["核心场景","集团经营决策 + 经验资产化 + 培训赋能"],
-    ["解决问题","提供更多集团经营视角数据；解决 AI 销冠经验难以复制的问题；优化新人培训机制，解决培训周期长、人才成长慢的问题"],
-    ["角色赋能","<b>一号位驾驶舱</b>（营收贡献与转化效率 / 营收结构与增速 / 客户增长与品类需求 / 客情与市场变化）；<b>销冠经验数字资产贡献</b>（制作场景 Skill 应用 Agent，调用获 Token，Skills 广场）；<b>新人销售培训实战案例分享</b>（多模态实景化培训）"],
-    ["业务闭环","经验 → <b>Skill 资产</b> → <b>Token 激励</b> → 培训赋能"],
-    ["核心模块","CEO 驾驶舱 / 数字资产（Skills · Token · Skills 广场）/ 培训实战"],
-    ["价值","<b>经验变资产</b>、<b>资产再赋能</b>、<b>经营可决策</b>"]
-  ]}
-};
-
-function renderTabTable(boxId, data){
-  var box = document.getElementById(boxId);
-  Object.keys(data).forEach(function(key, idx){
-    var d = data[key];
-    var panel = document.createElement('div');
-    panel.className = 'tab-panel' + (idx===0?' active':'');
-    panel.setAttribute('data-panel', key);
-    var rows = d.rows.map(function(r){ return '<tr><td class="field">'+r[0]+'</td><td>'+r[1]+'</td></tr>'; }).join('');
-    panel.innerHTML = '<div class="ov-print-title">'+d.name+'</div><table class="ov-table"><tbody>'+rows+'</tbody></table>';
-    box.appendChild(panel);
-  });
-}
-
-function wireTabs(scopeId){
-  var scope = document.getElementById(scopeId);
-  var tabs = scope.querySelectorAll('.tab-btn');
-  var panels = scope.querySelectorAll('.tab-panel');
-  tabs.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var key = btn.getAttribute('data-tab');
-      tabs.forEach(function(b){ b.classList.toggle('active', b===btn); });
-      panels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-panel')===key); });
-    });
-  });
-}
-
-renderTabTable('ovPanels', OVERVIEW);
-wireTabs('ovSec');
-
-/* ============================================================
-   侧边栏：一级菜单展开 / 收起二级
-   ============================================================ */
-(function sidebar(){
-  var wrap = document.getElementById('sbWrap');
-  wrap.addEventListener('click', function(e){
-    var item = e.target.closest('.sb-item');
-    if(!item || !item.classList.contains('expandable')) return;
-    item.classList.toggle('open');
-  });
-})();
-
-/* ============================================================
-   顶部进度条 + 左侧导航高亮
-   ============================================================ */
-(function navProgress(){
-  var bar = document.getElementById('progress-bar');
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
-  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-
-  function onScroll(){
-    var doc = document.documentElement;
-    var scrollTop = window.scrollY || doc.scrollTop;
-    var height = doc.scrollHeight - doc.clientHeight;
-    bar.style.width = (height>0 ? (scrollTop/height)*100 : 0) + '%';
-    var current = 0, probe = scrollTop + window.innerHeight*0.30;
-    for (var i=0;i<sections.length;i++){ if(sections[i] && sections[i].offsetTop<=probe) current=i; }
-    navLinks.forEach(function(a,idx){ a.classList.toggle('active', idx===current); });
+(function(){
+  var bar=document.getElementById('progress-bar');
+  var links=Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function sync(){
+    var doc=document.documentElement,top=window.scrollY||doc.scrollTop,total=doc.scrollHeight-doc.clientHeight;
+    bar.style.width=(total>0?(top/total)*100:0)+'%';
+    var current=0,probe=top+window.innerHeight*.3;
+    sections.forEach(function(section,index){if(section&&section.offsetTop<=probe)current=index;});
+    links.forEach(function(link,index){link.classList.toggle('active',index===current);});
   }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  navLinks.forEach(function(a){ a.addEventListener('click', function(){ setTimeout(onScroll,60); }); });
-  onScroll();
+  window.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync);sync();
 })();
 </script>
-
 </body>
 </html>
