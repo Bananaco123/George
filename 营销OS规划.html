@@ -78,7 +78,7 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 <aside id="sidenav">
   <div class="brand">G-Builder OS<small>V1.0 项目规划与进度</small></div>
   <nav id="nav">
-    <a href="#cover"><span class="num">00</span>项目封面</a>
+    <a href="#cover"><span class="num">00</span>首页</a>
     <a href="#bg"><span class="num">01</span>背景与目标</a>
     <a href="#flow"><span class="num">02</span>业务闭环</a>
     <a href="#overview"><span class="num">03</span>能力全景</a>
@@ -304,6 +304,7 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 
 <script>
 (function(){
+  if(!window.location.hash){window.scrollTo({top:0,left:0,behavior:'auto'});}
   var bar=document.getElementById('progress-bar');
   var links=Array.prototype.slice.call(document.querySelectorAll('#nav a'));
   var sections=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
