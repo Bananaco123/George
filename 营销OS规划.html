@@ -48,13 +48,13 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 .goal-card{position:relative;overflow:hidden}.goal-card:before{content:"";position:absolute;left:0;top:0;width:4px;height:100%;background:var(--blue-2)}
 .goal-card .ico,.cap-card .ico,.role-card .ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;background:var(--blue-50);color:var(--blue);font-size:17px;font-weight:800}
 
-.flow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;align-items:stretch}.flow-node{position:relative;min-height:122px;padding:16px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;text-align:center;box-shadow:0 4px 14px rgba(11,31,58,.05)}
+.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:stretch}.flow-node{position:relative;min-height:122px;padding:16px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;text-align:center;box-shadow:0 4px 14px rgba(11,31,58,.05)}
 .flow-node:not(:last-child):after{content:"→";position:absolute;right:-12px;top:47%;z-index:2;width:16px;color:var(--blue-2);font-weight:800}.flow-node .n{width:24px;height:24px;margin:0 auto 9px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;font-size:10px;font-weight:800}.flow-node b{display:block;color:var(--navy);font-size:12.5px}.flow-node small{display:block;margin-top:5px;color:var(--gray);font-size:10.5px;line-height:1.45}
 
 .overview-main{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.overview-stack{display:grid;gap:12px}.overview-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start;padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff}.overview-row b{color:var(--blue);font-size:12.5px}.overview-row span{color:#435168;font-size:13px}
 .architecture-stack{display:grid;gap:12px}.architecture{padding:20px;border-radius:12px;background:var(--navy);color:#fff}.architecture h3{font-size:16px}.architecture p{margin-top:6px;color:#AFC5DF;font-size:12.5px}.arch-list{display:grid;gap:9px;margin-top:14px}.arch-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.07);font-size:12px}.arch-item em{color:#83B7F4;font-size:10px;font-style:normal}.architecture.resource{border:1px solid #CFE0F3;background:#fff;color:var(--navy);box-shadow:var(--shadow)}.architecture.resource p{color:var(--gray)}.architecture.resource .arch-item{background:var(--blue-50);color:var(--blue)}.architecture.resource .arch-item em{color:var(--blue-2)}
 
-.agent-summary{display:flex;align-items:center;gap:18px;margin-bottom:18px;padding:17px 20px;border-radius:11px;background:var(--navy);color:#fff}.agent-summary strong{font-size:16px}.agent-summary span{color:#AFC5DF;font-size:12px}
+.agent-summary{display:flex;align-items:center;gap:18px;margin-bottom:18px;padding:17px 20px;border-radius:11px;background:var(--navy);color:#fff}.agent-summary strong{font-size:16px}.agent-summary span{color:#AFC5DF;font-size:12px}.agent-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
 .agent-card{min-height:220px}.agent-card h3{font-size:17px}.agent-card .value{min-height:64px}.agent-card.featured{border-color:#BBD4EF;background:linear-gradient(160deg,#fff,var(--blue-50))}.agent-card.featured .ask{margin-top:13px;padding:10px;border:1px dashed #AFCBE9;border-radius:8px;background:#fff;color:#355372;font-size:11.5px}.agent-card.featured .ask b{color:var(--blue)}
 
 .toolbar-showcase{padding:24px;border-radius:14px;background:var(--navy);color:#fff;box-shadow:var(--shadow)}.toolbar-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)}.toolbar-title strong{display:block;font-size:18px}.toolbar-title span{display:block;margin-top:4px;color:#AFC5DF;font-size:12px}.toolbar-scope{white-space:nowrap;padding:6px 11px;border-radius:999px;background:var(--blue-2);font-size:10.5px;font-weight:800}.tool-group{margin-top:18px}.tool-label{margin-bottom:9px;color:#7FA5D1;font-size:10px;font-weight:800;letter-spacing:1px}.tools{display:grid;gap:9px}.tool-grid.business{grid-template-columns:repeat(5,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:repeat(2,minmax(0,1fr))}.tool{display:flex;align-items:center;gap:10px;min-height:58px;padding:12px 14px;border-radius:9px;background:rgba(255,255,255,.08);font-size:12px;font-weight:600}.tool i{width:28px;height:28px;flex:none;border-radius:7px;display:flex;align-items:center;justify-content:center;background:rgba(46,123,214,.65);font-style:normal;font-size:11px}.tool.ai{background:rgba(0,163,180,.16);border:1px solid rgba(77,205,219,.22)}
@@ -64,13 +64,13 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 .role-card{min-height:220px}.role-card ul{margin:13px 0 0 17px;color:#4B5A6E;font-size:12.5px}.role-card li{margin:5px 0}
 
 
-.timeline-scroll-hint{margin:-8px 0 14px;text-align:right;color:#5B95FF;font-size:11px;font-weight:800}.week-timeline{display:flex;gap:18px;overflow-x:auto;padding:2px 2px 18px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--blue-2) #E8F1FF}.week-timeline::-webkit-scrollbar{height:10px}.week-timeline::-webkit-scrollbar-track{border-radius:999px;background:#E8F1FF}.week-timeline::-webkit-scrollbar-thumb{border-radius:999px;background:var(--blue-2)}.week-card{display:flex;flex:0 0 310px;min-height:270px;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(15,39,71,.06);scroll-snap-align:start}.week-card-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);background:#F6F9FD;color:var(--navy);font-size:18px;font-weight:800}.week-dot{width:14px;height:14px;flex:none;border-radius:50%;background:#2F83F7;box-shadow:0 0 0 5px #DCEAFF}.week-list{flex:1;margin:0;padding:8px 22px 24px;list-style:none}.week-item{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;padding:16px 0;border-bottom:1px solid #EDF2F7;color:var(--navy);font-size:13px;font-weight:700;line-height:1.55}.week-item:last-child{border-bottom:0}.week-item.done{color:#748091;font-weight:500}.week-status{display:flex;width:22px;height:22px;align-items:center;justify-content:center;margin-top:1px;border:2px solid #DFE6EF;border-radius:50%;color:#fff;font-size:13px;font-weight:900}.week-status.done{border-color:#15B884;background:#15B884}.week-card-link{display:block;margin:0 22px 20px;padding-top:14px;border-top:1px dashed #D9E3EF;color:var(--blue);text-align:center;font-size:13px;font-weight:800;text-decoration:none}.week-card-link:hover{text-decoration:underline}
+.timeline-topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:24px}.timeline-topbar .sec-head{margin-bottom:0}.timeline-scroll-hint{margin:12px 0 0;text-align:center;color:#5B95FF;font-size:11px;font-weight:800}.week-timeline{display:block;overflow-x:auto;padding:2px 2px 18px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--blue-2) #E8F1FF}.week-row{display:flex;width:max-content;gap:18px}.week-row+.week-row{margin-top:18px}.week-timeline::-webkit-scrollbar{height:10px}.week-timeline::-webkit-scrollbar-track{border-radius:999px;background:#E8F1FF}.week-timeline::-webkit-scrollbar-thumb{border-radius:999px;background:var(--blue-2)}.week-card{display:flex;flex:0 0 310px;min-height:270px;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(15,39,71,.06);scroll-snap-align:start}.week-card-head{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line);background:#F6F9FD;color:var(--navy);font-size:18px;font-weight:800}.week-dot{width:14px;height:14px;flex:none;border-radius:50%;background:#2F83F7;box-shadow:0 0 0 5px #DCEAFF}.week-list{flex:1;margin:0;padding:8px 22px 24px;list-style:none}.week-item{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;padding:16px 0;border-bottom:1px solid #EDF2F7;color:var(--navy);font-size:13px;font-weight:700;line-height:1.55}.week-item:last-child{border-bottom:0}.week-item.done{color:#748091;font-weight:500}.week-status{display:flex;width:22px;height:22px;align-items:center;justify-content:center;margin-top:1px;border:2px solid #DFE6EF;border-radius:50%;color:#fff;font-size:13px;font-weight:900}.week-status.done{border-color:#15B884;background:#15B884}.week-scope{margin:10px 0 0;padding-left:18px;color:#607086;font-size:11px;font-weight:500}.week-scope li{margin:6px 0}.timeline-demo-link{display:inline-flex;flex:none;align-items:center;justify-content:center;gap:9px;padding:10px 16px;border:1px solid var(--blue-2);border-radius:10px;background:#fff;color:var(--blue);font-size:12.5px;font-weight:900;text-decoration:none;transition:background .16s ease,border-color .16s ease,color .16s ease}.timeline-demo-link:hover{border-color:var(--blue);background:var(--blue-50);color:#123F73}.timeline-demo-link i{font-size:15px;font-style:normal}
 
-.future-plans{display:grid;gap:22px}.future-plan{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow)}.future-plan-head{display:flex;align-items:center;gap:16px;padding:20px 22px;background:var(--navy);color:#fff}.future-plan.v3 .future-plan-head{background:linear-gradient(135deg,#123B6D,#1A4D8F)}.future-version{display:flex;width:56px;height:56px;flex:none;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.1);font-size:13px;font-weight:900}.future-heading h3{font-size:20px}.future-heading p{margin-top:5px;color:#BDD0E6;font-size:12px}.future-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:20px 22px;border-bottom:1px solid var(--line);background:#F8FAFC}.future-meta-item{padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#fff}.future-meta-item b{display:block;margin-bottom:5px;color:var(--blue);font-size:11px}.future-meta-item span{color:#475569;font-size:12px;line-height:1.6}.future-loop{display:flex;gap:14px;align-items:flex-start;margin:20px 22px 0;padding:14px 16px;border-left:4px solid var(--blue-2);border-radius:8px;background:var(--blue-50)}.future-loop b{flex:none;color:var(--navy);font-size:12px}.future-loop span{color:#3E536C;font-size:12px;line-height:1.6}.future-modules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 22px}.future-module{padding:17px;border:1px solid var(--line);border-radius:10px;background:#fff}.future-module h4{color:var(--navy);font-size:14px}.future-module p{margin-top:7px;color:var(--gray);font-size:11.5px;line-height:1.6}.future-module ul{margin:11px 0 0 17px;color:#4B5A6E;font-size:11.5px;line-height:1.6}.future-module li{margin:4px 0}.future-values{display:flex;flex-wrap:wrap;gap:8px;padding:0 22px 22px}.future-values span{padding:6px 10px;border-radius:7px;background:#EDF4FC;color:var(--blue);font-size:10.5px;font-weight:700}.foot-note{text-align:center;margin-top:36px;color:var(--muted);font-size:11px}
+.future-plans{display:grid;gap:22px}.future-plan{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow)}.future-plan-head{display:flex;align-items:center;gap:16px;padding:20px 22px;background:linear-gradient(135deg,#0E2F55,#1A4D8F);color:#fff}.future-version{display:flex;width:56px;height:56px;flex:none;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(255,255,255,.1);font-size:13px;font-weight:900}.future-heading h3{font-size:20px}.future-heading p{margin-top:5px;color:#BDD0E6;font-size:12px}.future-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:20px 22px;border-bottom:1px solid var(--line);background:#F8FAFC}.future-meta-item{padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#fff}.future-meta-item b{display:block;margin-bottom:5px;color:var(--blue);font-size:11px}.future-meta-item span{color:#475569;font-size:12px;line-height:1.6}.future-loop{display:flex;gap:14px;align-items:flex-start;margin:20px 22px 0;padding:14px 16px;border-left:4px solid var(--blue-2);border-radius:8px;background:var(--blue-50)}.future-loop b{flex:none;color:var(--navy);font-size:12px}.future-loop span{color:#3E536C;font-size:12px;line-height:1.6}.future-modules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:20px 22px}.future-module{padding:17px;border:1px solid var(--line);border-radius:10px;background:#fff}.future-module h4{color:var(--navy);font-size:14px}.future-module p{margin-top:7px;color:var(--gray);font-size:11.5px;line-height:1.6}.future-module ul{margin:11px 0 0 17px;color:#4B5A6E;font-size:11.5px;line-height:1.6}.future-module li{margin:4px 0}.future-values{display:flex;flex-wrap:wrap;gap:8px;padding:0 22px 22px}.future-values span{padding:6px 10px;border-radius:7px;background:#EDF4FC;color:var(--blue);font-size:10.5px;font-weight:700}.foot-note{text-align:center;margin-top:36px;color:var(--muted);font-size:11px}
 
-@media(max-width:1150px){section{padding:58px 34px}.g4{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(4,1fr)}.flow-node:not(:last-child):after{display:none}.tool-grid.business{grid-template-columns:repeat(3,minmax(0,1fr))}.future-modules{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){:root{--nav-w:0px}#sidenav{display:none}main{margin-left:0}.g2,.g3,.g4,.overview-main,.future-meta,.future-modules{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.tool-grid.business{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:1fr}.entry-flow{grid-template-columns:1fr}.entry-step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-18px}.cover-inner h1{font-size:42px}.cover-inner h1 .sub{font-size:24px}.week-card{flex-basis:280px}.future-plan-head{align-items:flex-start}.future-loop{display:block}.future-loop span{display:block;margin-top:6px}}
-@media print{@page{size:A4 landscape;margin:10mm}body{background:#fff}#progress-bar,#sidenav,.print-btn{display:none!important}main{margin-left:0}section{padding:18px 4px;max-width:100%;page-break-after:always;break-after:page}section:last-child{page-break-after:auto}#cover{min-height:auto;padding:55px}.card,.toolbar-showcase,.week-card{box-shadow:none}.timeline-scroll-hint{display:none}.week-timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;overflow:visible;padding-bottom:0}.week-card{min-width:0;min-height:0}.week-card-head{padding:10px;font-size:12px}.week-list{padding:4px 10px 10px}.week-item{grid-template-columns:18px 1fr;gap:6px;padding:8px 0;font-size:8.5px}.week-status{width:16px;height:16px;font-size:9px}a{color:inherit;text-decoration:none}}
+@media(max-width:1150px){section{padding:58px 34px}.g4,.agent-grid{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:repeat(4,1fr)}.flow-node:not(:last-child):after{display:none}.tool-grid.business{grid-template-columns:repeat(3,minmax(0,1fr))}.future-modules{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){:root{--nav-w:0px}#sidenav{display:none}main{margin-left:0}.g2,.g3,.g4,.agent-grid,.overview-main,.future-meta,.future-modules{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.tool-grid.business{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-grid.ai{grid-template-columns:1fr}.entry-flow{grid-template-columns:1fr}.entry-step:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-18px}.cover-inner h1{font-size:42px}.cover-inner h1 .sub{font-size:24px}.week-card{flex-basis:280px}.timeline-topbar{align-items:flex-start;flex-direction:column}.future-plan-head{align-items:flex-start}.future-loop{display:block}.future-loop span{display:block;margin-top:6px}}
+@media print{@page{size:A4 landscape;margin:10mm}body{background:#fff}#progress-bar,#sidenav,.print-btn{display:none!important}main{margin-left:0}section{padding:18px 4px;max-width:100%;page-break-after:always;break-after:page}section:last-child{page-break-after:auto}#cover{min-height:auto;padding:55px}.card,.toolbar-showcase,.week-card{box-shadow:none}.timeline-scroll-hint{display:none}.week-timeline{display:block;overflow:visible;padding-bottom:0}.week-row{display:grid;width:auto;grid-template-columns:repeat(5,1fr);gap:8px}.week-row+.week-row{margin-top:8px}.week-card{min-width:0;min-height:0}.week-card-head{padding:10px;font-size:12px}.week-list{padding:4px 10px 10px}.week-item{grid-template-columns:18px 1fr;gap:6px;padding:8px 0;font-size:8.5px}.week-status{width:16px;height:16px;font-size:9px}a{color:inherit;text-decoration:none}}
 </style>
 </head>
 <body>
@@ -84,10 +84,9 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
     <a href="#overview"><span class="num">03</span>能力全景</a>
     <a href="#agent"><span class="num">04</span>AI 能力</a>
     <a href="#scrm"><span class="num">05</span>SCRM 工具栏</a>
-    <a href="#integration"><span class="num">06</span>CRM / ERP 入口</a>
-    <a href="#workbench"><span class="num">07</span>角色工作台</a>
-    <a href="#timeline"><span class="num">08</span>时间轴</a>
-    <a href="#future"><span class="num">09</span>后续规划</a>
+    <a href="#workbench"><span class="num">06</span>角色工作台</a>
+    <a href="#timeline"><span class="num">07</span>时间轴</a>
+    <a href="#future"><span class="num">08</span>后续规划</a>
   </nav>
   <button class="print-btn" onclick="window.print()">打印 / 导出 PDF</button>
   <div class="nav-foot">敬城国际 · 服务 GEORGE &amp; OKBuild</div>
@@ -106,23 +105,22 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 <section id="bg">
   <div class="sec-head"><span class="sec-tag">Background & Goal</span><h2 class="sec-title">项目背景与 V1.0 目标</h2></div>
   <div class="grid g3">
-    <div class="card goal-card"><div class="ico">01</div><h3>从单点工具走向业务闭环</h3><p>SCRM、Agent、工作台和外部系统入口不再分别规划，而是围绕同一客户与项目上下文协同。</p></div>
-    <div class="card goal-card"><div class="ico">02</div><h3>让 AI 能力可被明确感知</h3><p>形成 4 个 AI 能力与 4 个清晰的一级入口；AI 问答作为 AI 销冠的内置交互能力，不单独形成模块。</p></div>
-    <div class="card goal-card"><div class="ico">03</div><h3>多角色工作台</h3><p>工作台聚焦摘要、待办、提醒与快捷入口，不在 V1.0 建设重型数据大屏。</p></div>
+    <div class="card goal-card"><div class="ico">01</div><h3>从单点工具走向业务闭环</h3><p>SCRM、Agent 和多维看板不再分别规划，而是围绕营销、销售与数据管理形成协同闭环。</p></div>
+        <div class="card goal-card"><div class="ico">02</div><h3>让 AI 能力可被明确感知</h3><p>形成 5 个 AI 能力与 5 个清晰的一级入口。</p></div>
+    <div class="card goal-card"><div class="ico">03</div><h3>多维看板</h3><p>打破数据断层现状，链接运营投放-线索-订单全流程，项目管理看板打造数据驱动管理基础。</p></div>
   </div>
-  <div class="callout" style="margin-top:18px"><b>V1.0 定位：</b>面向投放运营、销售 PM 和部门管理者，建设从营销内容到销售承接、报价辅助与业务录入的一体化营销操作系统。</div>
+  <div class="callout" style="margin-top:18px"><b>V1.0 定位：</b>面向投放运营、销售 PM 和部门管理者，建设从运营投放到线索承接、销售分析、报价辅助与多维看板的一体化营销操作系统。</div>
 </section>
 
 <section id="flow">
   <div class="sec-head"><span class="sec-tag">Business Loop</span><h2 class="sec-title">V1.0 业务闭环</h2><p class="sec-sub">每个节点都承接上一步的业务上下文</p></div>
   <div class="flow">
-    <div class="flow-node"><div class="n">01</div><b>AI 营销</b><small>生成营销内容与可复用素材</small></div>
+    <div class="flow-node"><div class="n">01</div><b>AI 看板</b><small>连接运营、项目与业务数据</small></div>
     <div class="flow-node"><div class="n">02</div><b>SCRM 承接</b><small>统一接入和承载客户会话</small></div>
-    <div class="flow-node"><div class="n">03</div><b>AI 业务员</b><small>接待、收集、评级与转人工</small></div>
+    <div class="flow-node"><div class="n">03</div><b>AI 业务员</b><small>接待、收集意向、线索评级以及转派人工</small></div>
     <div class="flow-node"><div class="n">04</div><b>人工确认录入</b><small>客户、项目、跟进信息写入</small></div>
-    <div class="flow-node"><div class="n">05</div><b>AI 销冠</b><small>提问、分析、判断与行动建议</small></div>
-    <div class="flow-node"><div class="n">06</div><b>AI 报价</b><small>提取需求并生成报价草稿</small></div>
-    <div class="flow-node"><div class="n">07</div><b>角色工作台</b><small>汇总任务、进展与风险提醒</small></div>
+    <div class="flow-node"><div class="n">05</div><b>AI 销冠</b><small>分析对话、挖掘需求与行动建议</small></div>
+    <div class="flow-node"><div class="n">06</div><b>AI 报价</b><small>智能读图，快速生成多份智能报价</small></div>
   </div>
 </section>
 
@@ -130,9 +128,8 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
   <div class="sec-head"><span class="sec-tag">Capability Landscape</span><h2 class="sec-title">V1.0 能力全景</h2><p class="sec-sub">以平台底座和公共资源为横向支撑，以四组业务能力组成 V1.0 范围。</p></div>
   <div class="overview-main">
     <div class="overview-stack">
-      <div class="overview-row"><b>Agent 能力</b><span>AI 业务员、AI 销冠、AI 报价、AI 营销；自由提问、连续追问和知识检索融入 AI 销冠。</span></div>
+      <div class="overview-row"><b>Agent 能力</b><span>AI 业务员、AI 销冠、AI 报价、AI 看板、AI 翻译；自由提问、连续追问和知识检索融入 AI 销冠。</span></div>
       <div class="overview-row"><b>SCRM 工具栏</b><span>客户管理、公海管理、翻译、会话管理、营销资料五项业务工具，以及 AI 销冠与 AI 报价两个 AI 工具入口。</span></div>
-      <div class="overview-row"><b>业务入口</b><span>从会话提取客户、项目和跟进信息，预填后由员工确认录入 CRM 或 ERP。</span></div>
       <div class="overview-row"><b>角色工作台</b><span>投放运营、销售 PM、部门管理三类人群工作台及看板</span></div>
     </div>
     <div class="architecture-stack">
@@ -155,13 +152,14 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
 </section>
 
 <section id="agent">
-  <div class="sec-head"><span class="sec-tag">AI Capability</span><h2 class="sec-title">五项AI能力，五个一级入口</h2><p class="sec-sub">AI 前期作为独立菜单，后期融入AI销冠中。</p></div>
-  <div class="agent-summary"><div><strong>AGENT 信息架构</strong><br><span>AI 业务员 · AI 销冠 · AI 报价 · AI 营销</span></div></div>
-  <div class="grid g4">
+  <div class="sec-head"><span class="sec-tag">AI Capability</span><h2 class="sec-title">五项AI能力，五个一级入口</h2></div>
+  <div class="agent-summary"><div><strong>AGENT 信息架构</strong><br><span>AI 业务员 · AI 销冠 · AI 报价 · AI 看板 · AI 翻译</span></div></div>
+  <div class="grid agent-grid">
     <div class="card agent-card"><h3>AI 业务员</h3><p class="value">面向售前询盘，完成自动接待、信息收集、意向评级和转人工衔接。</p><div class="chips"><span class="chip blue">询盘接待</span><span class="chip">线索评级</span><span class="chip">转人工</span></div></div>
-    <div class="card agent-card featured"><h3>AI 销冠</h3><p class="value">围绕当前会话、客户档案和知识库直接提问，获得总结、判断、建议与业务分析。</p><div class="ask"><b>内置问答能力：</b>自由提问 · 连续追问 · 推荐问题 · 知识检索</div></div>
+    <div class="card agent-card"><h3>AI 销冠</h3><p class="value">围绕当前会话、客户档案和知识库直接提问，获得总结、判断、建议与业务分析。</p><div class="chips"><span class="chip blue">自由提问</span><span class="chip">连续追问</span><span class="chip">知识检索</span></div></div>
     <div class="card agent-card"><h3>AI 报价</h3><p class="value">提取客户需求，形成报价分析与报价草稿，并保留人工确认节点。</p><div class="chips"><span class="chip blue">需求提取</span><span class="chip">报价草稿</span><span class="chip">人工确认</span></div></div>
-    <div class="card agent-card"><h3>AI 营销</h3><p class="value">承接原 V2.0 营销能力，覆盖市场咨询、灵感、脚本与素材组合。</p><div class="chips"><span class="chip blue">市场咨询</span><span class="chip">脚本</span><span class="chip">黄金组件</span></div></div>
+    <div class="card agent-card"><h3>AI 看板</h3><p class="value">提供运营投放，项目管理，业务数据多维看板，驱动企业数据化管理。</p><div class="chips"><span class="chip blue">市场咨询</span><span class="chip">投放策略</span></div></div>
+    <div class="card agent-card"><h3>AI 翻译</h3><p class="value">提供全局多维度的大模型翻译能力。</p><div class="chips"><span class="chip blue">一键翻译</span><span class="chip">翻译回译</span></div></div>
   </div>
 </section>
 
@@ -170,42 +168,29 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
   <div class="toolbar-showcase">
     <div class="toolbar-head">
       <div class="toolbar-title"><strong>工具栏能力</strong><span>从工作界面直接调用常用业务工具与 AI 辅助能力</span></div>
-      <span class="toolbar-scope">V1.0 范围</span>
     </div>
-    <div class="tool-group"><div class="tool-label">业务工具层</div><div class="tools tool-grid business">
+    <div class="tool-group"><div class="tools tool-grid business">
         <div class="tool"><i>客</i>客户管理</div><div class="tool"><i>公</i>公海管理</div><div class="tool"><i>译</i>翻译</div><div class="tool"><i>会</i>会话管理</div><div class="tool"><i>资</i>营销资料</div>
       </div></div>
-    <div class="tool-group"><div class="tool-label">AI 工具层</div><div class="tools tool-grid ai">
-        <div class="tool ai"><i>冠</i>AI 销冠 · 当前会话分析</div><div class="tool ai"><i>价</i>AI 报价 · 携带会话上下文</div>
-      </div></div>
   </div>
-</section>
-
-<section id="integration">
-  <div class="sec-head"><span class="sec-tag">Business Entry Tools</span><h2 class="sec-title">CRM / ERP 入口工具</h2><p class="sec-sub">定位为“会话到业务系统的快捷录入”，不在 GOS 内重建 CRM 或 ERP。</p></div>
-  <div class="entry-flow">
-    <div class="entry-step"><strong>选择会话</strong><span>继承当前客户与项目上下文</span></div>
-    <div class="entry-step"><strong>信息提取</strong><span>识别客户、项目和跟进要点</span></div>
-    <div class="entry-step"><strong>内容预填</strong><span>形成可编辑的录入草稿</span></div>
-    <div class="entry-step"><strong>人工确认</strong><span>员工校正并确认关键内容</span></div>
-    <div class="entry-step"><strong>录入 / 跳转</strong><span>进入 CRM 或 ERP 对应入口</span></div>
-  </div>
-  <div class="boundary"><b>明确边界：</b>不自动修改客户归属、价格、库存和订单；不执行无人确认写入；不深度参与 CRM / ERP 内部业务流程。</div>
 </section>
 
 <section id="workbench">
-  <div class="sec-head"><span class="sec-tag">Role Workbench</span><h2 class="sec-title">三类轻量角色工作台</h2><p class="sec-sub">统一使用“工作台”入口，根据角色权限呈现不同摘要、待办、提醒和业务入口。</p></div>
+  <div class="sec-head"><span class="sec-tag">Data Dashboard</span><h2 class="sec-title">数据看板</h2></div>
   <div class="grid g3">
-    <div class="card role-card"><div class="ico">投</div><h3>投放运营工作台</h3><ul><li>营销任务与内容进度</li><li>待审核素材与素材异常</li><li>线索反馈与投放概况</li><li>AI 营销快捷入口</li></ul></div>
-    <div class="card role-card"><div class="ico">销</div><h3>销售 PM 工作台</h3><ul><li>待接线索与重点会话</li><li>客户跟进与超时提醒</li><li>待报价事项与项目节点</li><li>AI 销冠、AI 报价入口</li></ul></div>
-    <div class="card role-card"><div class="ico">管</div><h3>部门管理工作台</h3><ul><li>团队任务与人员负载</li><li>客户和项目推进概况</li><li>重点风险与异常预警</li><li>部门范围业务入口</li></ul></div>
+    <div class="card role-card"><div class="ico">投</div><h3>运营看板</h3><ul><li>线索转化与投放概况</li><li>业绩溯源</li><li>PM 分配线索分析</li></ul></div>
+    <div class="card role-card"><div class="ico">管</div><h3>项目看板</h3><ul><li>PM 业绩状况与排行</li><li>客户和项目推进概况</li><li>部门业绩多维度概况</li></ul></div>
+    <div class="card role-card"><div class="ico">数</div><h3>业务看板</h3><ul><li>聊天翻译等服务消耗</li><li>AI 业务员转化接待数据</li><li>CRM 商机客户创建数据</li></ul></div>
   </div>
 </section>
 
 <section id="timeline">
-  <div class="sec-head"><span class="sec-tag">Project Timeline</span><h2 class="sec-title">项目时间轴</h2></div>
-  <div class="timeline-scroll-hint">← 横向滑动查看全部周节点 →</div>
+  <div class="timeline-topbar">
+    <div class="sec-head"><span class="sec-tag">Project Timeline</span><h2 class="sec-title">项目时间轴</h2></div>
+    <a class="timeline-demo-link" href="https://bananaco123.github.io/GOS/home" target="_blank" rel="noopener noreferrer">点击查看 GOS V1.0 <i>→</i></a>
+  </div>
   <div class="week-timeline">
+    <div class="week-row">
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第1周</div><ul class="week-list">
       <li class="week-item done"><span class="week-status done">✓</span><span>客户端：SCRM 翻译能力上线</span></li>
       <li class="week-item done"><span class="week-status done">✓</span><span>客户端：云账号登录 + 侧边栏优化</span></li>
@@ -219,7 +204,7 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第3周</div><ul class="week-list">
       <li class="week-item done"><span class="week-status done">✓</span><span>客户端：AI 业务员需求启动</span></li>
       <li class="week-item done"><span class="week-status done">✓</span><span>定制二：下单图纸审单需求启动</span></li>
-    </ul><a class="week-card-link" href="https://bananaco123.github.io/GOS/home" target="_blank" rel="noopener noreferrer">GOS V1.0</a></article>
+    </ul></article>
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>6月 · 第4周</div><ul class="week-list">
       <li class="week-item done"><span class="week-status done">✓</span><span>客户端：新版客户端发布</span></li>
       <li class="week-item done"><span class="week-status done">✓</span><span>定制二：群聊知识库总结需求启动</span></li>
@@ -239,63 +224,77 @@ section{max-width:1200px;margin:0 auto;padding:72px 58px;scroll-margin-top:16px}
       <li class="week-item done"><span class="week-status done">✓</span><span>OS：基础架构 / IM 提测</span></li>
     </ul></article>
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第4周</div><ul class="week-list">
-      <li class="week-item"><span class="week-status"></span><span>OS：IM 完成测试</span></li>
-      <li class="week-item"><span class="week-status"></span><span>客户端：AI 业务员全面推广</span></li>
-      <li class="week-item"><span class="week-status"></span><span>客户端：数据看板、聊天监控上线</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：IM 完成测试</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：AI 业务员全面推广</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>客户端：数据看板、聊天监控上线</span></li>
     </ul></article>
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>7月 · 第5周</div><ul class="week-list">
-      <li class="week-item"><span class="week-status"></span><span>OS：完成工具栏提测</span></li>
-      <li class="week-item"><span class="week-status"></span><span>OS：完成 IM 更多功能提测</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：完成工具栏提测</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：完成 IM 更多功能提测</span></li>
     </ul></article>
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>8月 · 第1周</div><ul class="week-list">
-      <li class="week-item"><span class="week-status"></span><span>OS：完成 IM 基础能力开发</span></li>
-      <li class="week-item"><span class="week-status"></span><span>OS：完成 IM 工具栏迁移</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：完成 IM 基础能力开发</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：完成 IM 工具栏迁移</span></li>
     </ul></article>
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>8月 · 第2周</div><ul class="week-list">
-      <li class="week-item"><span class="week-status"></span><span>OS：完成 AI 问答、AI 询价智能体迁移</span></li>
-      <li class="week-item"><span class="week-status"></span><span>OS：AI 销冠项目启动</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：完成 AI 问答、AI 询价智能体迁移</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：AI 销冠项目启动</span></li>
     </ul></article>
     <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>8月 · 第3周</div><ul class="week-list">
-      <li class="week-item"><span class="week-status"></span><span>OS：完成 AI 业务员项目开发</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：完成 AI 业务员项目开发</span></li>
     </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>8月 · 第4周</div><ul class="week-list">
+      <li class="week-item done"><span class="week-status done">✓</span><span>OS：GOS 客户端全面提测</span></li>
+      <li class="week-item done"><span class="week-status done">✓</span><span>定制二：报价智能体定版，完成全面推广</span></li>
+    </ul></article>
+    </div>
+    <div class="week-row">
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>9月 · 第1周</div><ul class="week-list">
+      <li class="week-item"><span class="week-status"></span><span>OS：接入 META 广告平台数据接口</span></li>
+      <li class="week-item"><span class="week-status"></span><span>OS：GOS 四维看板需求定版，进入开发设计</span></li>
+      <li class="week-item"><span class="week-status"></span><span>CRM：CRM 客户等级需求进入开发设计</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>9月 · 第2周</div><ul class="week-list">
+      <li class="week-item"><span class="week-status"></span><span>OS：AI 翻译能力并入 GOS，进入开发</span></li>
+      <li class="week-item"><span class="week-status"></span><span>OS：AI 销冠 AI 服务开发提测</span></li>
+      <li class="week-item"><span class="week-status"></span><span>OS：定制二报价智能体并入 GOS 平台</span></li>
+      <li class="week-item"><span class="week-status"></span><span>OS：GOS V1.0 发布，内容含
+        <ol class="week-scope"><li>基础能力：IM 会话、知识库</li><li>数据看板：运营看板、项目看板、业务看板</li><li>AI 能力：AI 报价、AI 业务员</li></ol>
+      </span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>9月 · 第3周</div><ul class="week-list">
+      <li class="week-item"><span class="week-status"></span><span>OS：AI 业务员补充主动激活和转人工等能力</span></li>
+      <li class="week-item"><span class="week-status"></span><span>OS：AI 销冠 GOS 能力进入开发</span></li>
+    </ul></article>
+    <article class="week-card"><div class="week-card-head"><span class="week-dot"></span>9月 · 第4周</div><ul class="week-list">
+      <li class="week-item"><span class="week-status"></span><span>OS：GOS V1.1 上线，内容含
+        <ol class="week-scope"><li>AI 能力：AI 报价、AI 销冠</li></ol>
+      </span></li>
+    </ul></article>
+    </div>
   </div>
+  <div class="timeline-scroll-hint">← 横向滑动查看全部周节点 →</div>
 </section>
 
 <section id="future">
-  <div class="sec-head"><span class="sec-tag">Future Roadmap</span><h2 class="sec-title">V2.0 / V3.0 规划</h2></div>
+  <div class="sec-head"><span class="sec-tag">Future Roadmap</span><h2 class="sec-title">V2.0 规划</h2><p class="sec-sub">在 V1.0 已完成基础协同、AI 能力与多维看板的基础上，V2.0 聚焦经营决策、全周期治理和组织能力资产化。</p></div>
   <div class="future-plans">
     <article class="future-plan v2">
-      <div class="future-plan-head"><span class="future-version">V2.0</span><div class="future-heading"><h3>全交付周期与经营分析</h3><p>承接 V1.0 的 AI 营销、销售承接与轻量工作台，深化项目管理、数据看板和经营复盘。</p></div></div>
+      <div class="future-plan-head"><span class="future-version">V2.0</span><div class="future-heading"><h3>经营智能与组织能力资产化</h3><p>从“业务可执行、数据可查看”升级到“经营可诊断、项目可预测、经验可复用、人才可复制”。</p></div></div>
       <div class="future-meta">
-        <div class="future-meta-item"><b>面向角色</b><span>投放运营、销售 PM、部门主管</span></div>
-        <div class="future-meta-item"><b>核心场景</b><span>投放复盘、项目全周期管理、部门经营分析</span></div>
-        <div class="future-meta-item"><b>解决问题</b><span>投放效率和转化率不清晰；项目卡点难以复盘；团队战力与资源投入难以比较。</span></div>
-        <div class="future-meta-item"><b>核心模块</b><span>AI 营销深化、项目全周期、运营 / PM / 部门数据看板</span></div>
+        <div class="future-meta-item"><b>面向角色</b><span>集团管理者、部门负责人、销售 PM、运营与一线销售</span></div>
+        <div class="future-meta-item"><b>核心场景</b><span>跨层经营决策、项目全周期治理、优秀经验复用与培训实战</span></div>
+        <div class="future-meta-item"><b>解决问题</b><span>基础数据已经可见，但跨层洞察与预测不足；项目过程与经营结果未完全贯通；优秀经验难以标准化复制，新人成长依赖人工带教。</span></div>
+        <div class="future-meta-item"><b>核心模块</b><span>经营决策驾驶舱、全周期项目经营、数字资产与 Skills 生态、培训实战</span></div>
       </div>
-      <div class="future-loop"><b>业务闭环</b><span>营销内容 → 投放转化 → 销售承接 → 项目交付 → 复盘沉淀</span></div>
+      <div class="future-loop"><b>价值闭环</b><span>业务数据沉淀 → 项目经营诊断 → 经验提炼为 Skill → 组织复用与培训 → 管理决策</span></div>
       <div class="future-modules">
-        <div class="future-module"><h4>AI 营销深化</h4><p>在 V1.0 已前置能力基础上，强化内容生产与投放协同。</p><ul><li>市场咨询与灵感发现</li><li>脚本仿写与素材调用</li><li>黄金组件与复用素材</li></ul></div>
-        <div class="future-module"><h4>项目全周期</h4><p>将销售 PM 从售前、售中延伸至售后交付。</p><ul><li>项目总览与节点管理</li><li>卡点诊断与推进</li><li>售前、售中、售后过程复盘</li></ul></div>
-        <div class="future-module"><h4>角色数据看板</h4><p>由 V1.0 轻量工作台升级为经营分析入口。</p><ul><li>运营：流量、ROI、素材、漏斗</li><li>PM：项目总览与卡点分析</li><li>部门：项目 / 人员分析与排行</li></ul></div>
+        <div class="future-module"><h4>经营决策驾驶舱</h4><p>将 V1.0 的多维看板升级为可下钻、可诊断、可预测的经营决策入口。</p><ul><li>集团、部门、人员与项目多层视角</li><li>营收结构、转化效率和增长趋势分析</li><li>异常预警、原因诊断与经营复盘</li></ul></div>
+        <div class="future-module"><h4>全周期项目经营</h4><p>贯通商机、报价、订单、交付与售后，让项目过程和经营结果形成闭环。</p><ul><li>项目节点、成本、进度与风险管理</li><li>卡点诊断、责任定位与推进建议</li><li>项目利润、投入产出与全周期复盘</li></ul></div>
+        <div class="future-module"><h4>数字资产与 Skills 生态</h4><p>把销冠方法、业务规则和优秀实践沉淀为可管理、可复用的组织数字资产。</p><ul><li>业务经验制作成 Skill 并应用到 Agent</li><li>Skills 广场分发、版本管理与权限控制</li><li>使用效果度量与 Token 激励机制</li></ul></div>
+        <div class="future-module"><h4>培训实战</h4><p>用真实业务案例和多模态交互降低新人培养成本，持续复制组织能力。</p><ul><li>正向案例与流失案例结构化沉淀</li><li>对话式、情景式和多模态实战训练</li><li>能力评估、训练反馈与课程资产输出</li></ul></div>
       </div>
-      <div class="future-values"><span>可复用素材资源</span><span>ROI 转化漏斗</span><span>项目卡点可诊断</span><span>团队能力可视化</span></div>
-    </article>
-
-    <article class="future-plan v3">
-      <div class="future-plan-head"><span class="future-version">V3.0</span><div class="future-heading"><h3>集团经营资产数字化</h3><p>从业务执行进一步延伸到集团经营决策、经验资产化和培训赋能。</p></div></div>
-      <div class="future-meta">
-        <div class="future-meta-item"><b>面向角色</b><span>集团一号位、金牌销售、新人销售</span></div>
-        <div class="future-meta-item"><b>核心场景</b><span>集团经营决策、销冠经验资产化、新人培训实战</span></div>
-        <div class="future-meta-item"><b>解决问题</b><span>集团经营视角不足；销冠经验难复制；新人培训周期长、成长速度慢。</span></div>
-        <div class="future-meta-item"><b>核心模块</b><span>CEO 驾驶舱、数字资产、Skills 广场、Token 激励、培训实战</span></div>
-      </div>
-      <div class="future-loop"><b>业务闭环</b><span>经验沉淀 → Skill 资产 → Token 激励 → 培训赋能 → 经营决策</span></div>
-      <div class="future-modules">
-        <div class="future-module"><h4>CEO 驾驶舱</h4><ul><li>创客级营收贡献与转化效率</li><li>营收结构与增速分析</li><li>客户增长与品类需求趋势</li><li>客情变化与市场变化</li></ul></div>
-        <div class="future-module"><h4>数字资产</h4><ul><li>制作场景 Skill 并应用到 Agent</li><li>Skills 广场分发与复用</li><li>他人调用 Skill 获得 Token 激励</li></ul></div>
-        <div class="future-module"><h4>培训实战</h4><ul><li>正向与流失案例分享</li><li>对话式、实景式多模态培训</li><li>沉淀可对外赋能的课程</li></ul></div>
-      </div>
-      <div class="future-values"><span>经验变资产</span><span>资产再赋能</span><span>经营可决策</span></div>
+      <div class="future-values"><span>经营可诊断</span><span>项目可预测</span><span>经验可复用</span><span>人才可复制</span><span>资产可度量</span></div>
     </article>
   </div>
   <div class="foot-note">G-Builder OS · V1.0 项目规划与进度 ｜ 敬城国际 · 服务 GEORGE &amp; OKBuild</div>
